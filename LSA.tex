@@ -1,0 +1,66 @@
+\documentclass[]{article}
+
+\begin{document}
+Power Law method: \\
+$x$ corresponds to a discretization of a solution on a grid.  Suppose the grid
+is two dimensions:
+\begin{eqnarray}
+||x||=\sqrt{\sum_{i=0}^{N}\sum_{j=0}^{M} x_{ij}^{2}/(N M)}
+\end{eqnarray}
+\begin{eqnarray}
+Ax=\lambda x \\
+{\mbox given   } \ x^{(0)}, ||x^{(0)}||=1
+\end{eqnarray}
+for $k=0,1,2,3, \ldots$,
+\begin{eqnarray}
+\lambda^{(k)}=||Ax^{(k)}|| \\
+x^{(k+1)}=Ax^{(k)}/\lambda^{(k)}
+\end{eqnarray}
+Let $q^{(n)}$ be some ``base state'' at time $t^{n}$.  \\
+The nonlinear operator, $N(q)$, advances $q$ from $t^{n}$ to $t^{n+1}$:
+\begin{eqnarray}
+q^{(n+1)}\equiv N(q^{(n)})
+\end{eqnarray}
+Define the following, approximately linear, operator:
+\begin{eqnarray}
+L(x)\equiv \frac{1}{\epsilon}(N(q^{(n)}+\epsilon x)-q^{(n+1)}) \approx \\
+\frac{1}{\epsilon} (N(q^{(n)})+\epsilon \frac{\partial N}{\partial q}\cdot x-
+  N(q^{(n)})) \rightarrow \\
+\frac{\partial N}{\partial q}\cdot x \ {\mbox as } \ \epsilon\rightarrow 0
+\end{eqnarray}
+Applying the perturbation (just on the initial step of the 
+evaluation of $N()$) \\
+For reference, see Jemison, Sussman, Arienti, JCP 
+(7 equation model, see Saurel and Remi Abgrall) \\
+Conservation of mass (materials $m=1,\ldots, M$:
+\begin{eqnarray}
+\frac{\partial \rho_{m}F_{m}}{\partial t}+
+\nabla\cdot(\rho_{m}F_{m}u)=\epsilon (\delta (\rho_{m}))F_{m}
+\end{eqnarray}
+Conservation of energy (materials $m=1,\ldots, M$:
+\begin{eqnarray}
+\frac{\partial \rho_{m} E_{m}F_{m}}{\partial t}+
+\nabla\cdot((pu+\rho_{m}u E_{m})F_{m})=
+\epsilon (\delta (\rho_{m}E_{m}))F_{m}
+\end{eqnarray}
+Conservation of momentum:
+\begin{eqnarray}
+\frac{\partial \rho u}{\partial t}+
+\nabla\cdot(pI+\rho uu^{T})=\epsilon (\delta (\rho u))-
+ \sum_{m=1}^{M} \delta(\phi_{m})\nabla H(\phi_{m})
+\end{eqnarray}
+$\phi_{m}$ corresponds to the signed distance function for material $m$.  \\
+$\phi_{m}$ is positive if $\vec{x}\in \Omega_{m}$ and negative otherwise. \\
+$H(\phi)=1$ if $\phi>0$ and $H(\phi)=0$ otherwise. \\
+\par
+Outline of the code modifications:
+\begin{itemize}
+	\item read in the checkpoint of the base state 
+		$q^{(n)}$ and save it.
+	\item compute $q^{n+1}=N(q^{n})$ and save it. (no regridding!)
+	\item initialize $x^{(0)}$
+	\item carry out the power law algorithm.
+\end{itemize}
+
+\end{document}
+
