@@ -131,7 +131,8 @@
 ABSTRACT:
 A linear stability analysis technique is presented for finding the most
 unstable modes for a discretized multiphase/multi material system.  
-Instead of explicitly linearizing a discretized system of ODEs and then
+Instead of explicitly linearizing a discretized system of differential
+equations and then
 investigating the spectrum of the linearized equations, it is proposed
 to do a ``matrix-free'' power method approach.  In the proposed
 linear stability analysis approach, the largest (in magnitude)
@@ -148,154 +149,93 @@ solutions with complex topology can be recovered automatically without
 interface ``surgery.'' Furthermore, since the proposed linear
 stability algorithm does not require modification of the
 underlying flow solver, then it is possible to find unstable modes for
-complex topology problems.  Examples are include for Rayleigh capillary
+complex topology problems.  Examples are included for Rayleigh capillary
 instability and a Jet in Cross Flow problem.
 
 
 
-% Fred Stern -> reconstructed distance function coupled with VOF 
-%%cite: Mukundan
 \linenumbers
 \section{Introduction}
-We present an improved ``Continuous Moment-of-Fluid'' (CMOF) algorithm
-for computing solutions to multiphase (multimaterial) flows.  We 
-demonstrate the benefits of our new algorithm, beyond that of the 
-current state-of-the-art, on these benchmark multiphase flow
-problems:
-bubble formation\cite{helsby1955behaviour} (see Section \ref{bubform}),
-freezing\cite{hu2010icing} (see Section \ref{freezing_sec}), 
-liquid lens\cite{MIAO2021109358} (see Section \ref{liqlens}),
-and bubble dynamics in a Cryogenic fuel 
-tank\cite{bentz1993low} (see Section \ref{TPCEsec}).
+The research question at hand is ``can one do a linear stability analysis
+of complex multiphase flows?''  The classical approaches for these
+kinds of problems become very complicated as the ``linearize then
+discretize'' approach becomes unmanagible for complex liquid/gas interface
+structure.   We refer to 
+The following are some earlier works for the linear stability 
+analysis of multiphase flows.   
+In \cite{amini2014instability},
+the classical approach of ``linearize then discretize'' was presented for
+analyzing stability of an elliptic liquid jet in air.
+In \cite{10.1063/1.5043589},
+the classical approach of ``linearize then discretize'' was presented for
+analyzing stability of a liquid jet in weak crossflowing air.
+In \cite{kasmaiee2024linear},
+the classical approach of ``linearize then discretize'' was presented for
+analyzing stability of surface waves of a liquid jet injected in
+transverse gas flow with different angles.
 
-Figure \ref{checkerboard} (LEFT figure) 
-illustrates the 
-Moment-of-Fluid\cite{dyadechko2005moment,ahn2007multi,ahn2009adaptive}
-reconstruction of a ``saw tooth'' function that has a wave
-length of $\Delta x$.  The MOF reconstruction is very ``noisy'' in the
-sense that the highest frequency
-Fourier coefficients of the discrete Fourier transform
-of the reconstruction do not decay with repeated reconstructions.
-In other-words the amplitudes of the high frequency Fourier modes may
-not decay when exposed to the repeated process of
-(1) MOF advection, and (2) MOF reconstruction.
-The presence of $O(\Delta x)$ wave length noise is
-a problem for applications involving  
-surface tension driven flows.  Standard
-Volume-of-Fluid techniques for extracting the curvature
-from volume fractions\cite{sussman2003second,cummins2005estimating}
-will extract a zero curvature from a ``saw tooth'' interface 
-since the associated volume fraction field {\em and} centroid
-field varies in the $y$
-direction only.  In other words, the
-underlying computational fluid dynamics surface tension force
-algorithm will never ``see'' the jagged interface and therefore will have
-no way for removing the noise.  If there is viscosity, the presence of the 
-noise is unphysical and the noise can lead to collateral damage (see Figure 
-\ref{MOF_liquid_lens} and Table \ref{liquidlens_table}) 
-to the overall flow field; the noise can
-result in loss of accuracy.
 
-In order to overcome the ``MOF checkerboard instability'' issue, we have 
-developed the ``Continuous Moment of Fluid'' (CMOF) interface reconstruction
-algorithm\cite{VAHAB2021}.  
-Referring to Figure \ref{checkerboard}, the repeated process
-of (1) CMOF advection, followed by (2) CMOF reconstruction, 
-will quickly eliminate the
-noise.  The difference between CMOF and MOF is that in the CMOF algorithm,
-the reference centroid is the material centroid relative to the 
-encompassing $3\times 3\times 3$ stencil of grids cells, rather than just the
-center cell.  See Figure \ref{CMOFcentroid}.   
 
-We remark that alternative approaches to using MOF for multiphase 
-(multimaterial)
-flows, e.g the level set 
-method\cite{smith2002projection,shetabivash2020multiple,starinshak2014new}, 
-phase field method\cite{HUANG2022110795}, 
-front tracking method \cite{vu2015numerical},
-or standard ``PLIC'' VOF 
-methods\cite{ancellin2022extension,schofield2008material,schofield2009second}, 
-do not have the
-``MOF checkerboard instability'' problem.  These alternative approaches
-have other difficulties.  The level set or front tracking
-multimaterial 
-approaches\cite{smith2002projection,shetabivash2020multiple,starinshak2014new,vu2015numerical} 
-are not volume preserving methods.  
-The phase field method\cite{HUANG2022110795} 
-smears the interface over 3 grid
-cells or more.  The standard, second order, ``PLIC'' VOF methods for 
-$M$ material multimaterial 
-flows\cite{ancellin2022extension,schofield2008material,schofield2009second} 
-minimize a cost function which has $27(M-1)$ 
-degrees of freedom; i.e. the control variable space 
-is $27(M-1)$ dimensions.
 
-Our improved CMOF method, on the other-hand, admits a sharp reconstructed
-interface, is volume preserving, and the control variable space has only
-$3(M-1)$ dimensions.  The CMOF reconstruction algorithm has been 
-improved in this article by applying ``Decision Tree'' 
-machine learning techniques 
-in order to rapidly determine the optimal ``CMOF'' slope.
-We choose the Decision Tree algorithm\cite{breiman1984classification} which is 
-a ``lossless'' method if one chooses to store all of the training
-data samples in the tree structure.  
-In Table \ref{tab:triple_point}, we summarize the
-existing state-of-the-art for numerical methods for 
-multiphase (multimaterial)
-flows with surface tension.
+\section{Mathematical Model}
 
-\begin{table}[htbp]
-  \centering
-  \scalebox{0.7}
-  {
-  \begin{tabular}[h]{|C{2cm}|C{2cm}|C{2cm}|C{2cm}|C{2cm}|C{2cm}|C{2cm}|}
-    \hline
-    Author(s) & 
-    Triple point\newline reconstruction\newline algorithm\newline DOF$^{1}$ &
-    Coupled\newline with fluid &
-    Volume\newline preserving &
-    Sharp\newline interface & 
-    Curvature\newline discretization \\
-    \hline
-    Smith et al.~\cite{smith2002projection} & Level set & Yes & No  & Yes & Level set \\ \hline
-    Ahn and Shahkov\cite{ahn2007multi} & $\tn{VOF-GRAD}^2$\newline $\tn{VOF-LVIRA}^3$ \newline MOF 
-                 \newline 27 or 3 $\times(M-1)$& No & Yes & Yes & N/A\\ \hline
-    Kim\cite{kim2007phase} & Phase field & Yes & Yes & No & Phase field \\ \hline
-    Dyadechko and Shashkov\cite{dyadechko2008reconstruction} & MOF \newline $3(M-1)$ & No & Yes & Yes & N/A \\ \hline
-    Caboussat et al.~\cite{caboussat2008numerical} & $\tn{VOF-IP}^4$ \newline $27(M-1)$ & Yes & No & Yes & 
-                                           Convolution/Height function\cite{francois2006balanced}\\ \hline
-    Schofield et al.~\cite{schofield2008material, schofield2009second} & $\tn{VOF-PD}^5$ \newline $27(M-1)$ 
-	                                         & No & Yes & Yes & N/A \\ \hline
-    Sijoy and Chaturvedi\cite{sijoy2010volume} & $\tn{VOF-PLIC}^6$ \newline $27(M-1)$& 
-	                                      Yes & Yes & Yes & N/A \\ \hline
-    Kucharik et al.~\cite{kucharik2010comparative} & VOF-PLIC \newline VOF-PD \newline MOF \newline 27 or 3 $\times(M-1)$ &
-	                                         Yes & Yes & Yes & N/A \\ \hline
-    Bonhomme et al.~\cite{bonhomme2012inertial} & VOF \newline $27(M-1)$ & Yes & Yes & No & VOF \\ \hline
-    Starinshak et al.~\cite{starinshak2014new} & Interface level set & Yes & No & Yes & N/A \\ \hline
-    Vu et al.~\cite{vu2015numerical} & Front tracking & Yes & No & Yes & Front tracking \\ \hline
-    Pathak and Raessi\cite{pathak2016three} & VOF-PLIC \newline $27(M-1)$ & No & Yes & Yes & N/A \\ \hline
-    Shetabivash et al.~\cite{shetabivash2020multiple} & Level Set & Yes & No & Yes & Finite Difference \\ \hline
-    Ancellin et al.~\cite{ancellin2022extension} & VOF-PLIC \newline $27(M-1)$ & No & Yes & Yes & N/A \\ \hline
-    Huang et al.~\cite{HUANG2022110795} & Phase field & Yes & Yes & No & Phase field \\ \hline
-    Present Article, Ye et al & CMOF$^7$ \newline $3(M-1)$ & Yes & Yes & Yes & VOF Height function \\ \hline
-  \end{tabular}
-  }
- \scalebox{0.7}
- {
- \begin{minipage}{\textwidth}
-   $^1$: Degrees of Freedom for 3D reconstruction; $M$ is the number of materials \\
-   $^2$: Gradient based interface reconstruction\\
-   $^3$: Least squares volume-of-fluid interface reconstruction algorithm\\
-   $^4$: Interior-point method for the localization of the triple point\\
-   $^5$: Power diagram\\
-   $^6$: Piecewise linear interface construction\\
-   $^7$: Continuous Moment of Fluid construction\\
-   \end{minipage}
- }
+In the liquid:
+\begin{eqnarray}
+	\rho^{L}\frac{Du^{L}}{Dt}=\nabla\cdot(2\mu D^{L}-p^{L}I)
+\end{eqnarray}
+\begin{eqnarray}
+	\nabla\cdot u^{L}=0
+\end{eqnarray}
 
-\caption{Recent numerical methods of flows with triple points in 
-  chronological order.  \label{tab:triple_point} }
-\end{table}
+In the gas:
+\begin{eqnarray}
+	\rho^{G}\frac{Du^{G}}{Dt}=\nabla\cdot(2\mu D^{G}-p^{L}I)
+\end{eqnarray}
+\begin{eqnarray}
+	\nabla\cdot u^{G}=0
+\end{eqnarray}
+Jump conditions on the interface:
+\begin{eqnarray}
+	[n \dot \tau \dot n]=\sigma \kappa
+\end{eqnarray}
+\begin{eqnarray}
+\tau=2\mu D - pI
+\end{eqnarray}
+$\kappa$ is curvature,
+\begin{eqnarray}
+\kappa=\nabla\cdot n
+\end{eqnarray}
+$n$ is the interface normal, written in terms of the level set function $\phi$:
+\begin{eqnarray}
+	n=\frac{\nabla\phi}{|\nabla\phi|}
+\end{eqnarray}
+The liquid occupies the region where $\phi>0$ and the gas occupies the
+region where $\phi<0$ and $\phi$ satisfies the following equation:
+\begin{eqnarray}
+	\phi_{t}+u \cdot\nabla\phi=0
+\end{eqnarray}
+The overall system can be written as,
+\begin{eqnarray}
+	\frac{d S}{dt}=N(S)
+\end{eqnarray}
+\begin{eqnarray}
+	S=\left( \begin{array}{cc}
+		\phi &
+	u \end{array} \right)
+\end{eqnarray}
+After discretization of the multiphase flow equation, one can write:
+\begin{eqnarray}
+	S^{n+1}=S^{n}+\Delta t \tilde{N}(S^{n}) \label{discrete}
+\end{eqnarray}
+The proposed algorithm for linear stability analysis of two phase flows is
+as follows:
+\begin{enumerate}
+	\item compute (\ref{discrete}) until a desired ``steady state'' is
+		reached.
+
+
+
+
 
 
 \section{Background - deforming boundary problems in fluid mechanics}
