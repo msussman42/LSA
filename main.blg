@@ -1,46 +1,46 @@
-This is BibTeX, Version 0.99d (TeX Live 2020)
+This is BibTeX, Version 0.99d (TeX Live 2024)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: acm.bst
 Database file #1: cmof_paper.bib
-You've used 60 entries,
+You've used 40 entries,
             2253 wiz_defined-function locations,
-            885 strings with 14590 characters,
-and the built_in function-call counts, 20596 in all, are:
-= -- 2023
-> -- 1005
+            776 strings with 11059 characters,
+and the built_in function-call counts, 13466 in all, are:
+= -- 1317
+> -- 655
 < -- 0
-+ -- 442
-- -- 354
-* -- 1826
-:= -- 3387
-add.period$ -- 179
-call.type$ -- 60
-change.case$ -- 356
++ -- 287
+- -- 230
+* -- 1200
+:= -- 2223
+add.period$ -- 119
+call.type$ -- 40
+change.case$ -- 234
 chr.to.int$ -- 0
-cite$ -- 60
-duplicate$ -- 564
-empty$ -- 1591
-format.name$ -- 354
-if$ -- 4132
+cite$ -- 40
+duplicate$ -- 369
+empty$ -- 1046
+format.name$ -- 230
+if$ -- 2694
 int.to.chr$ -- 0
-int.to.str$ -- 60
-missing$ -- 59
-newline$ -- 302
-num.names$ -- 120
-pop$ -- 272
+int.to.str$ -- 40
+missing$ -- 39
+newline$ -- 202
+num.names$ -- 80
+pop$ -- 183
 preamble$ -- 1
-purify$ -- 297
+purify$ -- 195
 quote$ -- 0
-skip$ -- 322
+skip$ -- 207
 stack$ -- 0
-substring$ -- 1588
-swap$ -- 128
+substring$ -- 1016
+swap$ -- 80
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 238
+type$ -- 158
 warning$ -- 0
-while$ -- 217
-width$ -- 62
-write$ -- 597
+while$ -- 142
+width$ -- 42
+write$ -- 397

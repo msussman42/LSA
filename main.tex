@@ -136,7 +136,7 @@ equations and then
 investigating the spectrum of the linearized equations, it is proposed
 to do a ``matrix-free'' power method approach.  In the proposed
 linear stability analysis approach, the largest (in magnitude)
-eigenvalue of the linearized discritized equations is found.
+eigenvalue of the linearized discretized equations is found.
 The new 
 power method approach determines the action of the linear operator, 
 associated with the linearized equations, on a given eigenfunction by 
@@ -227,14 +227,39 @@ After discretization of the multiphase flow equation, one can write:
 \begin{eqnarray}
 	S^{n+1}=S^{n}+\Delta t \tilde{N}(S^{n}) \label{discrete}
 \end{eqnarray}
-The proposed algorithm for linear stability analysis of two phase flows is
+The proposed algorithm, ``discretize then differentiate,''
+for linear stability analysis of two phase flows is
 as follows:
-\begin{enumerate}
-	\item compute (\ref{discrete}) until a desired ``steady state'' is
-		reached.
-
-
-
+\begin{description}
+	\item[1.] compute (\ref{discrete}) until a desired ``steady state'' is
+		reached.  We call the steady state $S^{steady,(0)}$.
+	\item[2.] Using $S^{steady,(0)}$ as initial conditions, we solve 
+		(\ref{discrete}) for $M$ time steps, with a fixed $\Delta t$.
+		We call the resulting new state $S^{steady,(1)}$.
+	\item[3.] construct a default velocity perturbation and
+		normalize the perturbation so that the maximum value is one.
+		Multiply the perturbation by $\epsilon_{V}$ and add it to
+		the base state 
+		$S^{steady,(0)}$.  
+	\item[4.] construct a default temperature perturbation and
+		normalize the perturbation so that the maximum value is one.
+		Multiply the perturbation by $\epsilon_{T}$ and add it to
+		the base state
+		$S^{steady,(0)}$.  
+	\item[5.] construct a default levelset  perturbation which will be
+		zero outside of a user prescribed narrow band thickness
+		$R_{narrow}$ with respect to the unperturbed level set 
+		function.  In otherwords, $\delta\phi=0$ when 
+		$|\phi^{steady,(0)}|>R_{narrow}$.  Define the following
+		scaling factor:
+		\begin{eqnarray*}
+			\beta=\max_{|\phi^{steady,(0)}|<\Delta x} 
+			|\delta\phi|
+		\end{eqnarray*}
+		Multiply $\delta\phi$ by $\sigma\Delta x/\beta$.  $\sigma=2$
+		in our preliminary simulations.  Add the levelset perturbation
+		to the base state $\phi^{steady,(0)}$.
+\end{description}
 
 
 
