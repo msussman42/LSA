@@ -82,7 +82,7 @@
 \bibliographystyle{acm}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-\title{A non-intrusive numerical method for determing the most
+\title{A non-intrusive numerical method for determining the most
   dangerous unstable modes of discretized
   multiphase/multimaterial systems.
   \thanks{this material is based upon work supported by National
@@ -179,10 +179,18 @@ transverse gas flow with different angles.
 
 \section{Mathematical Model}
 
+\par\noindent
+It is assumed that the flow is incompressible. 
+
+\par\noindent
 In the liquid:
 \begin{eqnarray}
 	\rho^{L}\frac{Du^{L}}{Dt}=\nabla\cdot(2\mu D^{L}-p^{L}I)
 \end{eqnarray}
+\begin{eqnarray}
+        \rho^{L}c_{v}^{L}\frac{DT^{L}}{Dt}=\nabla\cdot k\nabla T^{L}
+\end{eqnarray}
+
 \begin{eqnarray}
 	\nabla\cdot u^{L}=0
 \end{eqnarray}
@@ -192,11 +200,23 @@ In the gas:
 	\rho^{G}\frac{Du^{G}}{Dt}=\nabla\cdot(2\mu D^{G}-p^{L}I)
 \end{eqnarray}
 \begin{eqnarray}
+        \rho^{G}c_{v}^{G}\frac{DT^{G}}{Dt}=\nabla\cdot k\nabla T^{G}
+\end{eqnarray}
+\begin{eqnarray}
 	\nabla\cdot u^{G}=0
 \end{eqnarray}
 Jump conditions on the interface:
 \begin{eqnarray}
-	[n \dot \tau \dot n]=\sigma \kappa
+	[n \cdot \tau \cdot n]=\sigma \kappa
+\end{eqnarray}
+\begin{eqnarray}
+        [u]=0
+\end{eqnarray}
+\begin{eqnarray}
+	[T]=0
+\end{eqnarray}
+\begin{eqnarray}
+	[k\nabla T\cdot n]=0
 \end{eqnarray}
 \begin{eqnarray}
 \tau=2\mu D - pI
@@ -219,9 +239,10 @@ The overall system can be written as,
 	\frac{d S}{dt}=N(S)
 \end{eqnarray}
 \begin{eqnarray}
-	S=\left( \begin{array}{cc}
-		\phi &
-	u \end{array} \right)
+	S=\left( \begin{array}{c}
+		\phi \\
+	u \\
+        T \end{array} \right)
 \end{eqnarray}
 After discretization of the multiphase flow equation, one can write:
 \begin{eqnarray}
@@ -235,18 +256,40 @@ as follows:
 		reached.  We call the steady state $S^{steady,(0)}$.
 	\item[2.] Using $S^{steady,(0)}$ as initial conditions, we solve 
 		(\ref{discrete}) for $M$ time steps, with a fixed $\Delta t$.
-		We call the resulting new state $S^{steady,(1)}$.
-	\item[3.] construct a default velocity perturbation and
-		normalize the perturbation so that the maximum value is one.
-		Multiply the perturbation by $\epsilon_{V}$ and add it to
+		We call the resulting new state $S_{alt}^{steady,(0)}$.
+        \item[3.] $k_{power}=0$
+        \item[4.] Construct default perturbation(s):
+                \begin{eqnarray}
+                \delta u^{(k_{power})}
+                \end{eqnarray}
+                \begin{eqnarray}
+                \delta T^{(k_{power})}
+                \end{eqnarray}
+                \begin{eqnarray}
+                \delta \phi^{(k_{power})}
+                \end{eqnarray}
+
+ 
+	\item[5.] normalize the velocity perturbation 
+		so that the maximum value is one.
+		Multiply the perturbation by $\epsilon_{u}$ and add it to
 		the base state 
-		$S^{steady,(0)}$.  
-	\item[4.] construct a default temperature perturbation and
-		normalize the perturbation so that the maximum value is one.
+		$S^{steady,(0)}$:
+                \begin{eqnarray}
+                u^{perturb,(0)}=u^{steady,(0)}+
+                   \epsilon_{u}(\delta u^{(k_{power})})^{norm}
+                \end{eqnarray}
+
+	\item[6.] normalize the temperature perturbation 
+		so that the maximum value is one.
 		Multiply the perturbation by $\epsilon_{T}$ and add it to
 		the base state
-		$S^{steady,(0)}$.  
-	\item[5.] construct a default levelset  perturbation which will be
+		$S^{steady,(0)}$:
+                \begin{eqnarray}
+                T^{perturb,(0)}=T^{steady,(0)}+
+                   \epsilon_{T}(\delta T^{(k_{power})})^{norm}
+                \end{eqnarray}
+	\item[7.] Make sure the input levelset  perturbation is
 		zero outside of a user prescribed narrow band thickness
 		$R_{narrow}$ with respect to the unperturbed level set 
 		function.  In otherwords, $\delta\phi=0$ when 
@@ -258,7 +301,34 @@ as follows:
 		\end{eqnarray*}
 		Multiply $\delta\phi$ by $\sigma\Delta x/\beta$.  $\sigma=2$
 		in our preliminary simulations.  Add the levelset perturbation
-		to the base state $\phi^{steady,(0)}$.
+		to the base state $\phi^{steady,(0)}$:
+                \begin{eqnarray}
+                \phi^{perturb,(0)}=\phi^{steady,(0)}+
+                   \frac{\sigma\Delta x}{\beta}(\delta \phi^{(k_{power})})
+                \end{eqnarray}
+        \item[8.] Solve,
+        \begin{eqnarray}
+	S^{perturb,n+1}=S^{perturb,n}+\Delta t \tilde{N}(S^{perturb,n}) 
+           \label{perturb_discrete}
+        \end{eqnarray}
+        for $M$ time steps, with a fixed $\Delta t$.
+        \item[9.] Update the perturbation prediction:
+                \begin{eqnarray}
+                \delta u^{(k_{power}+1)}=u^{perturb,M}-u_{alt}^{(0)}
+                \end{eqnarray}
+                \begin{eqnarray}
+                T^{(k_{power}+1)}=T^{perturb,M}-T_{alt}^{(0)}
+                \end{eqnarray}
+                \begin{eqnarray}
+                \phi^{(k_{power}+1)}=\phi^{perturb,M}-\phi_{alt}^{(0)}
+                \end{eqnarray}
+        \item[10.] $k_{power}=k_{power}+1$
+        \item[11.] Go back to step 5.
+
+
+
+
+
 \end{description}
 
 
