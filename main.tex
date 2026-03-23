@@ -271,48 +271,60 @@ as follows:
 
  
 	\item[5.] normalize the velocity perturbation 
-		so that the maximum value is one.
-		Multiply the perturbation by $\epsilon_{u}$ and add it to
-		the base state 
-		$S^{steady,(0)}$:
+		so that the maximum value is one.  The normalized velocity
+		perturbation is called:
                 \begin{eqnarray}
-                u^{perturb,(0)}=u^{steady,(0)}+
-                   \epsilon_{u}(\delta u^{(k_{power})})^{norm}
+                (\delta u^{(k_{power})})^{norm}
                 \end{eqnarray}
-
 	\item[6.] normalize the temperature perturbation 
-		so that the maximum value is one.
-		Multiply the perturbation by $\epsilon_{T}$ and add it to
-		the base state
-		$S^{steady,(0)}$:
+		so that the maximum value is one.  The normalized temperature
+		perturbation is called:
                 \begin{eqnarray}
-                T^{perturb,(0)}=T^{steady,(0)}+
-                   \epsilon_{T}(\delta T^{(k_{power})})^{norm}
+                (\delta T^{(k_{power})})^{norm}
                 \end{eqnarray}
 	\item[7.] Make sure the input levelset  perturbation is
 		zero outside of a user prescribed narrow band thickness
 		$R_{narrow}$ with respect to the unperturbed level set 
-		function.  In otherwords, $\delta\phi=0$ when 
+		function.  In otherwords, 
+		$\delta\phi^{(k_{power})}=0$ when 
 		$|\phi^{steady,(0)}|>R_{narrow}$.  Define the following
-		scaling factor:
+		interface normalization factor:
 		\begin{eqnarray*}
 			\beta=\max_{|\phi^{steady,(0)}|<\Delta x} 
-			|\delta\phi|
+			|\delta\phi^{(k_{power})}|
 		\end{eqnarray*}
-		Multiply $\delta\phi$ by $\sigma\Delta x/\beta$.  $\sigma=2$
-		in our preliminary simulations.  Add the levelset perturbation
-		to the base state $\phi^{steady,(0)}$:
+		Multiply $\delta\phi^{(k_{power})}$ by $1/\beta$; the 
+		normalized
+		level set perturbation is
+                \begin{eqnarray}
+		(\delta\phi^{(k_{power})})^{norm}=\frac{1}{\beta}
+		\delta\phi^{(k_{power})} 
+		\end{eqnarray}
+
+	\item[8.] Add the normalized perturbations to the base 
+		state $S^{steady,(0)}$ (velocity, temperature, and 
+		level set function):
+                \begin{eqnarray}
+                u^{perturb,(0)}=u^{steady,(0)}+
+                   \epsilon_{u}(\delta u^{(k_{power})})^{norm}
+                \end{eqnarray}
+                \begin{eqnarray}
+                T^{perturb,(0)}=T^{steady,(0)}+
+                   \epsilon_{T}(\delta T^{(k_{power})})^{norm}
+                \end{eqnarray}
                 \begin{eqnarray}
                 \phi^{perturb,(0)}=\phi^{steady,(0)}+
-                   \frac{\sigma\Delta x}{\beta}(\delta \phi^{(k_{power})})
+		\sigma\Delta x(\delta \phi^{(k_{power})})^{norm}
                 \end{eqnarray}
-        \item[8.] Solve,
+
+        \item[9.] Solve,
         \begin{eqnarray}
-	S^{perturb,n+1}=S^{perturb,n}+\Delta t \tilde{N}(S^{perturb,n}) 
+		S^{perturb,(n+1)}=S^{perturb,(n)}+
+		\Delta t \tilde{N}(S^{perturb,(n)}) 
            \label{perturb_discrete}
         \end{eqnarray}
         for $M$ time steps, with a fixed $\Delta t$.
-        \item[9.] Update the perturbation prediction:
+        \item[10.] Update the perturbation prediction:
                 \begin{eqnarray}
                 \delta u^{(k_{power}+1)}=u^{perturb,M}-u_{alt}^{(0)}
                 \end{eqnarray}
@@ -322,15 +334,37 @@ as follows:
                 \begin{eqnarray}
                 \phi^{(k_{power}+1)}=\phi^{perturb,M}-\phi_{alt}^{(0)}
                 \end{eqnarray}
-        \item[10.] $k_{power}=k_{power}+1$
-        \item[11.] Go back to step 5.
-
-
-
-
+        \item[11.] $k_{power}=k_{power}+1$
+        \item[12.] Go back to step 5.
 
 \end{description}
-
+Important Remark: Taken in succession, the steps 8,9,10,11,5,6,7
+represents an approximation for the power method:
+$x^{k+1}=A x^{k}$.  To see this we define the overall 
+nonlinear operator encompassing the $M$ time steps as:
+\begin{eqnarray}
+	N^{(M)}\equiv (I+\Delta t \tilde{N})^{M}
+\end{eqnarray}
+So that, in this compact notation, step (10) is,
+\begin{eqnarray}
+	\delta S^{(k_{power}+1)}=
+	N^{(M)}(S^{steady,(0)}+\epsilon D \delta S^{(k_{power})})-
+	N^{(M)}(S^{steady,(0)})
+\end{eqnarray}
+$D$ is a 3x3 diagonal matrix.  Let,
+\begin{eqnarray}
+	A\equiv \frac{\partial N^{(M)}(S^{steady,(0)})}{\partial S}
+\end{eqnarray}
+Then using Taylor's theorem,
+\begin{eqnarray}
+	\delta S^{(k_{power}+1)}\approx 
+	\epsilon A D \delta S^{(k_{power})}
+\end{eqnarray}
+Then after step (10), one does the normalization steps, 5,6,7, so that one has
+\begin{eqnarray}
+	\delta S^{(k_{power}+1)}\approx 
+	\alpha (D^{new})^{-1} A D \delta S^{(k_{power})}
+\end{eqnarray}
 
 
 \section{Background - deforming boundary problems in fluid mechanics}
