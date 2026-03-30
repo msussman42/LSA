@@ -172,6 +172,12 @@
 \newblock {\em Physics of Fluids 34}, 5 (05 2022).
 \newblock 052109.
 
+\bibitem{RANJAN2020109076}
+{\sc Ranjan, R., Unnikrishnan, S., and Gaitonde, D.}
+\newblock A robust approach for stability analysis of complex flows using
+  high-order navier-stokes solvers.
+\newblock {\em Journal of Computational Physics 403\/} (2020), 109076.
+
 \bibitem{SalasShockfitting1976}
 {\sc Salas, M.~D.}
 \newblock Shock fitting method for complicated two-dimensional supersonic
@@ -183,6 +189,11 @@
 \newblock A multiphase godunov method for compressible multifluid and
   multiphase flows.
 \newblock {\em Journal of Computational Physics 150}, 2 (1999), 425--467.
+
+\bibitem{schmid2010dynamic}
+{\sc Schmid, P.~J.}
+\newblock Dynamic mode decomposition of numerical and experimental data.
+\newblock {\em Journal of fluid mechanics 656\/} (2010), 5--28.
 
 \bibitem{shin2009hybrid}
 {\sc Shin, S., and Juric, D.}

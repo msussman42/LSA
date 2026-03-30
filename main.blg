@@ -3,44 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: acm.bst
 Database file #1: cmof_paper.bib
-You've used 40 entries,
+You've used 42 entries,
             2253 wiz_defined-function locations,
-            776 strings with 11059 characters,
-and the built_in function-call counts, 13466 in all, are:
-= -- 1317
-> -- 655
+            790 strings with 11405 characters,
+and the built_in function-call counts, 14061 in all, are:
+= -- 1376
+> -- 679
 < -- 0
-+ -- 287
-- -- 230
-* -- 1200
-:= -- 2223
-add.period$ -- 119
-call.type$ -- 40
-change.case$ -- 234
++ -- 298
+- -- 238
+* -- 1249
+:= -- 2322
+add.period$ -- 125
+call.type$ -- 42
+change.case$ -- 244
 chr.to.int$ -- 0
-cite$ -- 40
-duplicate$ -- 369
-empty$ -- 1046
-format.name$ -- 230
-if$ -- 2694
+cite$ -- 42
+duplicate$ -- 387
+empty$ -- 1096
+format.name$ -- 238
+if$ -- 2815
 int.to.chr$ -- 0
-int.to.str$ -- 40
-missing$ -- 39
-newline$ -- 202
-num.names$ -- 80
-pop$ -- 183
+int.to.str$ -- 42
+missing$ -- 41
+newline$ -- 212
+num.names$ -- 84
+pop$ -- 189
 preamble$ -- 1
-purify$ -- 195
+purify$ -- 203
 quote$ -- 0
-skip$ -- 207
+skip$ -- 217
 stack$ -- 0
-substring$ -- 1016
-swap$ -- 80
+substring$ -- 1061
+swap$ -- 84
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 158
+type$ -- 166
 warning$ -- 0
-while$ -- 142
-width$ -- 42
-write$ -- 397
+while$ -- 149
+width$ -- 44
+write$ -- 417

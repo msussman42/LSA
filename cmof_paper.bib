@@ -1763,3 +1763,27 @@ eprint = {
   publisher={Springer}
 }
 
+@article{schmid2010dynamic,
+  title={Dynamic mode decomposition of numerical and experimental data},
+  author={Schmid, Peter J},
+  journal={Journal of fluid mechanics},
+  volume={656},
+  pages={5--28},
+  year={2010},
+  publisher={Cambridge University Press}
+}
+
+@article{RANJAN2020109076,
+title = {A robust approach for stability analysis of complex flows using high-order Navier-Stokes solvers},
+journal = {Journal of Computational Physics},
+volume = {403},
+pages = {109076},
+year = {2020},
+issn = {0021-9991},
+doi = {https://doi.org/10.1016/j.jcp.2019.109076},
+url = {https://www.sciencedirect.com/science/article/pii/S0021999119307818},
+author = {Rajesh Ranjan and S. Unnikrishnan and Datta Gaitonde},
+keywords = {Linear stability, Jacobian-free, Matrix-free, Eigenvalue analysis, DMD},
+abstract = {Global stability modes of flows provide significant insight into their dynamics. Direct methods to obtain these modes are restricted by the daunting sizes and complexity of Jacobians encountered in general three-dimensional flows. Jacobian-free iterative approaches such as those based on Arnoldi algorithm have greatly alleviated the required computational burden by considering a smaller subspace formed using Jacobian-vector products to obtain the desired subset of the eigenmodes. However, operations such as orthonormalization, as well as commonly used spectral transformations of matrices introduce computational and parameter-dependent costs that inhibit their routine application to general three-dimensional flowfields. The present work addresses some of these limitations by proposing and implementing a robust, generalizable high-order approach to extract the principal global modes; the method is shown to be straightforward to use with curvilinear coordinates and is exercised in a compressible framework. Linearized perturbation evolution snapshots, representing the desired Jacobian-vector products, are directly obtained from the same non-linear Navier-Stokes code as is used to generate the basic state by adding an easily derived body force, together with suitable initial conditions. This leverages the framework of the non-linear code, including existing advanced high-order spatio-temporal discretization methods, while obviating the need for a separate linearized solver. The subspace formed with the high-order accurate Jacobian-vector products, when subjected to dynamic mode decomposition (DMD), yield the desired physically meaningful principal stability modes without the need for an iterative procedure. The validity and versatility of the method are demonstrated with numerous examples encompassing essential elements expected in realistic flows, such as compressibility effects and complicated domains requiring general curvilinear meshes. Favorable quantitative comparisons are presented with an Arnoldi-based matrix-forming approach in extracting primary and secondary modes of interest. Considerations regarding the accuracy, linearity, convergence and overall efficiency of the method relative to other Jacobian-free methods are also presented. The proposed method is shown to offer an attractive alternative for stability analyses, particularly in flows where stretched, curvilinear meshes are warranted, or very low frequency modes are desired.}
+}
+
