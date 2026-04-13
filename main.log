@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.1)  30 MAR 2026 17:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.1)  13 APR 2026 16:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**main.tex
+**main
 (./main.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -439,129 +439,137 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/loc
-al/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [2] [3] 
-[4] [5]
-Overfull \hbox (4.33409pt too wide) in paragraph at lines 422--429
+al/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [2] [3]
+Overfull \hbox (11.41203pt too wide) in alignment at lines 330--340
+ [][][] []
+ []
+
+[4]
+Overfull \hbox (20.72461pt too wide) in alignment at lines 374--380
+ [][][] []
+ []
+
+[5]
+Overfull \hbox (4.33409pt too wide) in paragraph at lines 435--442
 \OT1/cmr/m/n/10 have de-vel-oped (i) front track-ing methods[[], []], (ii) fron
 t cap-tur-ing methods[[],
  []
 
 
 LaTeX Warning: Reference `distancefunction' on page 6 undefined on input line 4
-47.
+60.
 
 
 LaTeX Warning: Reference `distancefunction' on page 6 undefined on input line 4
-50.
+63.
 
 
-LaTeX Warning: Reference `tank_levelset' on page 6 undefined on input line 464.
+LaTeX Warning: Reference `tank_levelset' on page 6 undefined on input line 477.
 
 
 
-LaTeX Warning: Reference `ice_levelset' on page 6 undefined on input line 465.
+LaTeX Warning: Reference `ice_levelset' on page 6 undefined on input line 478.
 
 
-LaTeX Warning: Reference `liquid_lens' on page 6 undefined on input line 465.
+LaTeX Warning: Reference `liquid_lens' on page 6 undefined on input line 478.
 
 [6] [7] [8]
 
 LaTeX Warning: Reference `fig:triple_point' on page 9 undefined on input line 6
-65.
+78.
 
 
-LaTeX Warning: Reference `fig:triple_point' on page 9 undefined on input line 6
-98.
+LaTeX Warning: Reference `fig:triple_point' on page 9 undefined on input line 7
+11.
 
-[9]
 
-LaTeX Warning: Reference `fig:ch2_nodeslocation' on page 10 undefined on input 
-line 702.
+LaTeX Warning: Reference `fig:ch2_nodeslocation' on page 9 undefined on input l
+ine 715.
 
-[10]
-Overfull \hbox (9.41223pt too wide) in paragraph at lines 789--798
+[9] [10]
+Overfull \hbox (9.41223pt too wide) in paragraph at lines 802--811
 \OT1/cmr/bx/n/10 frac-tions and Cen-troids: \OT1/cmr/m/n/10 The (con-tin-u-ous)
  moment-of-fluid re-con-structed
  []
 
 
-Overfull \hbox (3.48935pt too wide) in alignment at lines 812--818
+Overfull \hbox (3.48935pt too wide) in alignment at lines 825--831
  [][][] []
  []
 
 [11] [12]
 
 LaTeX Warning: Reference `fig:mof_reconstruction' on page 13 undefined on input
- line 912.
+ line 925.
 
 
 LaTeX Warning: Reference `fig:mof_tes_nontes' on page 13 undefined on input lin
-e 920.
+e 933.
 
 
-LaTeX Warning: Reference `CMOFcentroid' on page 13 undefined on input line 950.
+LaTeX Warning: Reference `CMOFcentroid' on page 13 undefined on input line 963.
 
 
 
-LaTeX Warning: Reference `DT_figure' on page 13 undefined on input line 970.
+LaTeX Warning: Reference `DT_figure' on page 13 undefined on input line 983.
 
 [13]
 
-LaTeX Warning: Reference `DT_figure' on page 14 undefined on input line 1002.
+LaTeX Warning: Reference `DT_figure' on page 14 undefined on input line 1015.
 
 
-Overfull \hbox (5.9468pt too wide) in paragraph at lines 1034--1038
+Overfull \hbox (5.9468pt too wide) in paragraph at lines 1047--1051
 []\OT1/cmr/m/n/10 In 2D, at the very start of a sim-u-la-tion, one ran-domly cr
 e-ates $\OML/cmm/m/it/10 n[] \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (21.66628pt too wide) in paragraph at lines 1034--1038
+Overfull \hbox (21.66628pt too wide) in paragraph at lines 1047--1051
 \OT1/cmr/m/n/10 100[]$ sam-ple pairs for lines cut-ting through a given cell: $
 (^^B[]\OML/cmm/m/it/10 ; F[]\OT1/cmr/m/n/10 )$. 
  []
 
 [14]
 
-LaTeX Warning: Reference `zalesaktable' on page 15 undefined on input line 1070
+LaTeX Warning: Reference `zalesaktable' on page 15 undefined on input line 1083
 .
 
 
 LaTeX Warning: Reference `fig:redistancing' on page 15 undefined on input line 
-1135.
+1148.
 
 [15]
 
 LaTeX Warning: Reference `fig:redistancing' on page 16 undefined on input line 
-1139.
+1152.
 
 
 LaTeX Warning: Reference `fig:redistancing' on page 16 undefined on input line 
-1144.
+1157.
 
 
 LaTeX Warning: Reference `fig:redistancing' on page 16 undefined on input line 
-1147.
+1160.
 
 
 LaTeX Warning: Reference `fig:redistancing_3D' on page 16 undefined on input li
-ne 1151.
+ne 1164.
 
 
 LaTeX Warning: Reference `fig:redistancing' on page 16 undefined on input line 
-1166.
+1179.
 
 
 LaTeX Warning: Reference `fig:redistancing_3D' on page 16 undefined on input li
-ne 1167.
+ne 1180.
 
 
 LaTeX Warning: Reference `fig:redistancing_ils' on page 16 undefined on input l
-ine 1174.
+ine 1187.
 
 
 LaTeX Warning: Reference `fig:redistancing_ils' on page 16 undefined on input l
-ine 1176.
+ine 1189.
 
 (./main.bbl [16] [17] [18] [19]) [20] (./main.aux)
  ***********
@@ -572,42 +580,49 @@ L3 programming layer <2024-02-20>
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 493EE77C0C8622703CD4B4B9336AC239;2070.
  ) 
 Here is how much of TeX's memory you used:
- 10966 strings out of 474116
- 166334 string characters out of 5743683
+ 10965 strings out of 474116
+ 166321 string characters out of 5743683
  1943187 words of memory out of 5000000
  33024 multiletter control sequences out of 15000+600000
  570647 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 69i,12n,79p,669b,680s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
-></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb>
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
-/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
-usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></us
-r/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/
-local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/
-local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/lo
-cal/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/loca
-l/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/
-texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/tex
-live/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texliv
-e/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2
-024/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/202
-4/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/te
-xmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/202
-4/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2024/
-texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on main.pdf (20 pages, 328473 bytes).
+ 69i,13n,79p,665b,680s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+pdfTeX warning (dest): name{equation.5.66} has been referenced but does not exi
+st, replaced by a fixed one
+
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><
+/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></
+usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></
+usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></u
+sr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></us
+r/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/
+local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/lo
+cal/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/lo
+cal/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loca
+l/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/
+texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/te
+xlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texli
+ve/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/
+2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/202
+4/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2024/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texm
+f-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2024/
+texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2024/te
+xmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
+Output written on main.pdf (20 pages, 328679 bytes).
 PDF statistics:
- 463 PDF objects out of 1000 (max. 8388607)
- 395 compressed objects within 4 object streams
- 147 named destinations out of 1000 (max. 500000)
+ 462 PDF objects out of 1000 (max. 8388607)
+ 394 compressed objects within 4 object streams
+ 146 named destinations out of 1000 (max. 500000)
  73 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -276,15 +276,19 @@ as follows:
  
 	\item[5.] normalize the velocity perturbation 
 		so that the maximum value is one.  The normalized velocity
-		perturbation is called:
+		perturbation can be written as:
                 \begin{eqnarray}
-                (\delta u^{(k_{power})})^{norm}
+			(\delta u^{(k_{power})})^{norm}=
+			\frac{\delta u^{(k_{power})}}
+			{\alpha_{u}^{(k_{power})}}
                 \end{eqnarray}
 	\item[6.] normalize the temperature perturbation 
 		so that the maximum value is one.  The normalized temperature
 		perturbation is called:
                 \begin{eqnarray}
-                (\delta T^{(k_{power})})^{norm}
+                (\delta T^{(k_{power})})^{norm}=
+		\frac{\delta T^{(k_{power})}}
+		{\alpha_{T}^{(k_{power})}}
                 \end{eqnarray}
 	\item[7.] Make sure the input levelset  perturbation is
 		zero outside of a user prescribed narrow band thickness
@@ -301,8 +305,9 @@ as follows:
 		normalized
 		level set perturbation is
                 \begin{eqnarray}
-		(\delta\phi^{(k_{power})})^{norm}=\frac{1}{\beta}
-		\delta\phi^{(k_{power})} 
+		        (\delta\phi^{(k_{power})})^{norm}=
+			\frac{\delta\phi^{(k_{power})}}
+			{\beta^{(k_{power})}}
 		\end{eqnarray}
 
 	\item[8.] Add the normalized perturbations to the base 
@@ -320,6 +325,20 @@ as follows:
                 \phi^{perturb,(0)}=\phi^{steady,(0)}+
 		\sigma\Delta x(\delta \phi^{(k_{power})})^{norm}
                 \end{eqnarray}
+		Important note: we can write the overall perturbation in the
+		following form:
+                \begin{eqnarray}
+			(\delta S^{(k_{power})})^{norm}=\left(
+			\begin{array}{ccc}
+				\gamma_{u}^{(k_{power})}\mathbf{I} & 0 & 0 \\
+				0 & \gamma_{T}^{(k_{power})}\mathbf{I} & 0 \\
+				0 & 0 & \gamma_{\phi}^{(k_{power})}\mathbf{I}
+			\end{array} \right)
+			\delta S^{(k_{power})}\equiv \\
+			\mbox{diag}(\vec{\gamma}^{(k_{power})})
+			\delta S^{(k_{power})}
+                \end{eqnarray}
+
 
         \item[9.] Solve,
         \begin{eqnarray}
@@ -354,42 +373,36 @@ $N^{(M)}$ is the ``M'' time step discrete solution operator.
 So that, in this compact notation, step (10) is,
 \begin{eqnarray}
 	\delta S^{(k_{power}+1)}=
-	N^{(M)}(S^{steady,(0)}+\epsilon D \delta S^{(k_{power})})-
+	N^{(M)}(S^{steady,(0)}+
+	\mbox{diag}(\vec{\gamma}^{(k_{power})})
+	\delta S^{(k_{power})})-
 	N^{(M)}(S^{steady,(0)})
 \end{eqnarray}
-$D$ is a 3x3 diagonal matrix.  Let,
+Let,
 \begin{eqnarray}
 	A\equiv \frac{\partial N^{(M)}(S^{steady,(0)})}{\partial S}
 \end{eqnarray}
 Then using Taylor's theorem,
 \begin{eqnarray}
 	\delta S^{(k_{power}+1)}\approx 
-	\epsilon A D \delta S^{(k_{power})}
+	A 
+	\mbox{diag}(\vec{\gamma}^{(k_{power})})
+        \delta S^{(k_{power})}
 \end{eqnarray}
 Then after step (10), one does the normalization steps, 5,6,7, so that one has
 \begin{eqnarray}
 	\delta S^{(k_{power}+1)}\approx 
-	\alpha (D^{new})^{-1} A D \delta S^{(k_{power})}
+	A 
+	\mbox{diag}(\vec{\gamma}^{(k_{power})})
+	\delta S^{(k_{power})}= \\
+	A 
+	\mbox{diag}(\vec{\gamma}^{(k_{power})})
+	A 
+	\mbox{diag}(\vec{\gamma}^{(k_{power}-1)})
+	\delta S^{(k_{power}-1)}= \ldots \\
 \end{eqnarray}
-If we revisit these equations component by component, one has:
-\begin{eqnarray}
-	\delta u^{(k_{power}+1)}=
-	u^{(M)}(S^{steady,(0)}+
-	\epsilon D\delta S^{(k_{power})})-
-	u^{(M)}(S^{steady,(0)})
-\end{eqnarray}
-Let,
-\begin{eqnarray}
-	A_{u}\equiv \frac{\partial u^{(M)}(S^{steady,(0)})}{\partial S}
-\end{eqnarray}
-\begin{eqnarray}
-	\delta u^{(k_{power}+1)}=\epsilon A_{u}D\delta S^{(k_{power})}
-\end{eqnarray}
-As is clear here, the power method will not work! When different variables are
-normalized differently, one no longer has the $p$th iterate proportional
-to $A^{p}x$ for some initial guess $x$.  Also, the maximum eigenvalue in
-magnitude might be negative.  It is recommended by 
-Ranjan et al\cite{RANJAN2020109076} (paper now included in this repository) to 
+Ranjan et al\cite{RANJAN2020109076} (paper now included in this repository) 
+recommends to 
 use the DMD method by Schmid\cite{schmid2010dynamic} (this paper also
 now included in this repository).
 
