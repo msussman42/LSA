@@ -257,9 +257,23 @@ as follows:
 	\item[2.] Using $S^{steady,(0)}$ as initial conditions, we solve 
 		(\ref{discrete}) for $M$ time steps, with a fixed $\Delta t$.
 		We call the resulting new state 
-		$S_{alt}^{steady,(0)}$.
-		$S_{alt}^{steady,(0)}$ is the state that one obtains if the
-		applied perturbation is null.
+		$S_{alt}^{steady,(0)}$; this state can be also classified
+		as the ``no perturbation state.''
+		In other words,
+		$S_{alt}^{steady,(0)}$ 
+		is the state that one obtains if the
+		applied perturbation is null.  In mathematical form,
+                we define the overall 
+                nonlinear operator encompassing the $M$ time steps as:
+                \begin{eqnarray}
+	           N^{(M)}\equiv (I+\Delta t \tilde{N})^{M}
+                \end{eqnarray}
+                $N^{(M)}$ is the ``M'' time step discrete solution operator.
+		Then we have:
+                \begin{eqnarray}
+		S_{alt}^{steady,(0)}=N^{(M)}(S^{steady,(0)})
+                \end{eqnarray}
+
 
         \item[3.] $k_{power}=0$
         \item[4.] Construct default perturbation(s):
@@ -274,23 +288,37 @@ as follows:
                 \end{eqnarray}
 
  
-	\item[5.] normalize the velocity perturbation 
+	\item[5.] (a) normalize the velocity perturbation 
 		so that the maximum value is one.  The normalized velocity
 		perturbation can be written as:
                 \begin{eqnarray}
-			(\delta u^{(k_{power})})^{norm}=
+			\delta u^{(k_{power})}=
 			\frac{\delta u^{(k_{power})}}
 			{\alpha_{u}^{(k_{power})}}
                 \end{eqnarray}
-	\item[6.] normalize the temperature perturbation 
+		(b) Multiply the normalized velocity field by a representative
+		perturbation factor:
+                \begin{eqnarray}
+			\delta u^{(k_{power})}=
+			\epsilon_{u} \delta u^{(k_{power})}
+                \end{eqnarray}
+
+	\item[6.] (a) normalize the temperature perturbation 
 		so that the maximum value is one.  The normalized temperature
 		perturbation is called:
                 \begin{eqnarray}
-                (\delta T^{(k_{power})})^{norm}=
+                \delta T^{(k_{power})}=
 		\frac{\delta T^{(k_{power})}}
 		{\alpha_{T}^{(k_{power})}}
                 \end{eqnarray}
-	\item[7.] Make sure the input levelset  perturbation is
+		(b) Multiply the normalized temperature field by a 
+		representative perturbation factor:
+                \begin{eqnarray}
+                \delta T^{(k_{power})}=
+		\frac{\delta T^{(k_{power})}}
+		{\alpha_{T}^{(k_{power})}}
+                \end{eqnarray}
+	\item[7.] (a) Make sure the input levelset  perturbation is
 		zero outside of a user prescribed narrow band thickness
 		$R_{narrow}$ with respect to the unperturbed level set 
 		function.  In otherwords, 
@@ -305,40 +333,43 @@ as follows:
 		normalized
 		level set perturbation is
                 \begin{eqnarray}
-		        (\delta\phi^{(k_{power})})^{norm}=
+		        \delta\phi^{(k_{power})}=
 			\frac{\delta\phi^{(k_{power})}}
 			{\beta^{(k_{power})}}
 		\end{eqnarray}
+		(b) Multiply the normalized levelset field by a 
+		representative perturbation factor:
+                \begin{eqnarray}
+		        \delta\phi^{(k_{power})}=
+			\sigma\Delta x \delta\phi^{(k_{power})}
+		\end{eqnarray}
 
-	\item[8.] Add the normalized perturbations to the base 
+	\item[8.] Add the perturbations to the base 
 		state $S^{steady,(0)}$ (velocity, temperature, and 
 		level set function):
                 \begin{eqnarray}
-                u^{perturb,(0)}=u^{steady,(0)}+
-                   \epsilon_{u}(\delta u^{(k_{power})})^{norm}
+                u^{perturb,(0)}=u^{steady,(0)}+\delta u^{(k_{power})}
                 \end{eqnarray}
                 \begin{eqnarray}
-                T^{perturb,(0)}=T^{steady,(0)}+
-                   \epsilon_{T}(\delta T^{(k_{power})})^{norm}
+		T^{perturb,(0)}=T^{steady,(0)}+\delta T^{(k_{power})}
                 \end{eqnarray}
                 \begin{eqnarray}
                 \phi^{perturb,(0)}=\phi^{steady,(0)}+
-		\sigma\Delta x(\delta \phi^{(k_{power})})^{norm}
+			\delta \phi^{(k_{power})}
                 \end{eqnarray}
-		Important note: we can write the overall perturbation in the
+		note: we can write the overall perturbation in the
 		following form:
                 \begin{eqnarray}
-			(\delta S^{(k_{power})})^{norm}=\left(
-			\begin{array}{ccc}
-				\gamma_{u}^{(k_{power})}\mathbf{I} & 0 & 0 \\
-				0 & \gamma_{T}^{(k_{power})}\mathbf{I} & 0 \\
-				0 & 0 & \gamma_{\phi}^{(k_{power})}\mathbf{I}
+			\delta S^{(k_{power})}=\left(
+			\begin{array}{c}
+                         \delta u^{(k_{power})} \\
+                         \delta T^{(k_{power})} \\
+			 \delta \phi^{(k_{power})}
 			\end{array} \right)
-			\delta S^{(k_{power})}\equiv \\
-			\mbox{diag}(\vec{\gamma}^{(k_{power})})
-			\delta S^{(k_{power})}
                 \end{eqnarray}
-
+                \begin{eqnarray}
+                S^{perturb,(0)}=S^{steady,(0)}+\delta S^{(k_{power})}
+                \end{eqnarray}
 
         \item[9.] Solve,
         \begin{eqnarray}
@@ -358,12 +389,14 @@ as follows:
                 \phi^{(k_{power}+1)}=\phi^{perturb,M}-\phi_{alt}^{(0)}
                 \end{eqnarray}
         \item[11.] $k_{power}=k_{power}+1$
-        \item[12.] Go back to step 5.
+        \item[12.] Go back to step 8.
 
 \end{description}
-Important Remark: Taken in succession, the steps 8,9,10,11,5,6,7
-represents an approximation for the power method:
-$x^{k+1}=A x^{k}$.  To see this we define the overall 
+Remark: the steps 8,9,10,11,12
+represents an approximation for the following:
+$x^{k+1}=A x^{k}$.  So that a Krylov subspace is being generated.
+To see this 
+we define the overall 
 nonlinear operator encompassing the $M$ time steps as:
 \begin{eqnarray}
 	N^{(M)}\equiv (I+\Delta t \tilde{N})^{M}
@@ -374,10 +407,14 @@ So that, in this compact notation, step (10) is,
 \begin{eqnarray}
 	\delta S^{(k_{power}+1)}=
 	N^{(M)}(S^{steady,(0)}+
-	\mbox{diag}(\vec{\gamma}^{(k_{power})})
 	\delta S^{(k_{power})})-
 	N^{(M)}(S^{steady,(0)})
 \end{eqnarray}
+Note:
+\begin{eqnarray}
+S_{alt}^{steady,(0)}=N^{(M)}(S^{steady,(0)})
+\end{eqnarray}
+
 Let,
 \begin{eqnarray}
 	A\equiv \frac{\partial N^{(M)}(S^{steady,(0)})}{\partial S}
@@ -385,21 +422,9 @@ Let,
 Then using Taylor's theorem,
 \begin{eqnarray}
 	\delta S^{(k_{power}+1)}\approx 
-	A 
-	\mbox{diag}(\vec{\gamma}^{(k_{power})})
-        \delta S^{(k_{power})}
-\end{eqnarray}
-Then after step (10), one does the normalization steps, 5,6,7, so that one has
-\begin{eqnarray}
-	\delta S^{(k_{power}+1)}\approx 
-	A 
-	\mbox{diag}(\vec{\gamma}^{(k_{power})})
-	\delta S^{(k_{power})}= \\
-	A 
-	\mbox{diag}(\vec{\gamma}^{(k_{power})})
-	A 
-	\mbox{diag}(\vec{\gamma}^{(k_{power}-1)})
-	\delta S^{(k_{power}-1)}= \ldots \\
+	A \delta S^{(k_{power})}\approx
+	A^{2} \delta S^{(k_{power}-1)}\approx\ldots\approx
+	A^{k_{power}+1} \delta S^{(0)}
 \end{eqnarray}
 Ranjan et al\cite{RANJAN2020109076} (paper now included in this repository) 
 recommends to 
