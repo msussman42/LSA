@@ -134,11 +134,11 @@ unstable modes for a discretized multiphase/multi material system.
 Instead of explicitly linearizing a discretized system of differential
 equations and then
 investigating the spectrum of the linearized equations, it is proposed
-to do a ``matrix-free'' power method approach.  In the proposed
+to do a ``matrix-free'' DMD method approach.  In the proposed
 linear stability analysis approach, the largest (in magnitude)
 eigenvalue of the linearized discretized equations is found.
 The new 
-power method approach determines the action of the linear operator, 
+DMD method approach determines the action of the linear operator, 
 associated with the linearized equations, on a given eigenfunction by 
 way of strategically perturbing a base state and then applying the
 original, unmodified, multiphase flow algorithm.  
@@ -254,6 +254,7 @@ as follows:
 \begin{description}
 	\item[1.] compute (\ref{discrete}) until a desired ``steady state'' is
 		reached.  We call the steady state $S^{steady,(0)}$.
+                $\bar{Q}$ in \cite{RANJAN2020109076}.
 	\item[2.] Using $S^{steady,(0)}$ as initial conditions, we solve 
 		(\ref{discrete}) for $M$ time steps, with a fixed $\Delta t$.
 		We call the resulting new state 
@@ -262,7 +263,9 @@ as follows:
 		In other words,
 		$S_{alt}^{steady,(0)}$ 
 		is the state that one obtains if the
-		applied perturbation is null.  In mathematical form,
+		applied perturbation is null.  
+                $\bar{Q}+\Delta \bar{Q}$ in \cite{RANJAN2020109076}.
+                In mathematical form,
                 we define the overall 
                 nonlinear operator encompassing the $M$ time steps as:
                 \begin{eqnarray}
@@ -275,101 +278,104 @@ as follows:
                 \end{eqnarray}
 
 
-        \item[3.] $k_{power}=0$
+        \item[3.] $k_{DMD}=0$
         \item[4.] Construct default perturbation(s):
                 \begin{eqnarray}
-                \delta u^{(k_{power})}
+                \delta u^{(k_{DMD})}
                 \end{eqnarray}
                 \begin{eqnarray}
-                \delta T^{(k_{power})}
+                \delta T^{(k_{DMD})}
                 \end{eqnarray}
                 \begin{eqnarray}
-                \delta \phi^{(k_{power})}
+                \delta \phi^{(k_{DMD})}
                 \end{eqnarray}
+                $Q^{\prime}$ in \cite{RANJAN2020109076}.
 
  
 	\item[5.] (a) normalize the velocity perturbation 
 		so that the maximum value is one.  The normalized velocity
 		perturbation can be written as:
                 \begin{eqnarray}
-			\delta u^{(k_{power})}=
-			\frac{\delta u^{(k_{power})}}
-			{\alpha_{u}^{(k_{power})}}
+			\delta u^{(k_{DMD})}=
+			\frac{\delta u^{(k_{DMD})}}
+			{\alpha_{u}^{(k_{DMD})}}
                 \end{eqnarray}
 		(b) Multiply the normalized velocity field by a representative
 		perturbation factor:
                 \begin{eqnarray}
-			\delta u^{(k_{power})}=
-			\epsilon_{u} \delta u^{(k_{power})}
+			\delta u^{(k_{DMD})}=
+			\epsilon_{u} \delta u^{(k_{DMD})}
                 \end{eqnarray}
 
 	\item[6.] (a) normalize the temperature perturbation 
 		so that the maximum value is one.  The normalized temperature
 		perturbation is called:
                 \begin{eqnarray}
-                \delta T^{(k_{power})}=
-		\frac{\delta T^{(k_{power})}}
-		{\alpha_{T}^{(k_{power})}}
+                \delta T^{(k_{DMD})}=
+		\frac{\delta T^{(k_{DMD})}}
+		{\alpha_{T}^{(k_{DMD})}}
                 \end{eqnarray}
 		(b) Multiply the normalized temperature field by a 
 		representative perturbation factor:
                 \begin{eqnarray}
-                \delta T^{(k_{power})}=
-		\frac{\delta T^{(k_{power})}}
-		{\alpha_{T}^{(k_{power})}}
+                \delta T^{(k_{DMD})}=
+		\frac{\delta T^{(k_{DMD})}}
+		{\alpha_{T}^{(k_{DMD})}}
                 \end{eqnarray}
 	\item[7.] (a) Make sure the input levelset  perturbation is
 		zero outside of a user prescribed narrow band thickness
 		$R_{narrow}$ with respect to the unperturbed level set 
 		function.  In otherwords, 
-		$\delta\phi^{(k_{power})}=0$ when 
+		$\delta\phi^{(k_{DMD})}=0$ when 
 		$|\phi^{steady,(0)}|>R_{narrow}$.  Define the following
 		interface normalization factor:
 		\begin{eqnarray*}
 			\beta=\max_{|\phi^{steady,(0)}|<\Delta x} 
-			|\delta\phi^{(k_{power})}|
+			|\delta\phi^{(k_{DMD})}|
 		\end{eqnarray*}
-		Multiply $\delta\phi^{(k_{power})}$ by $1/\beta$; the 
+		Multiply $\delta\phi^{(k_{DMD})}$ by $1/\beta$; the 
 		normalized
 		level set perturbation is
                 \begin{eqnarray}
-		        \delta\phi^{(k_{power})}=
-			\frac{\delta\phi^{(k_{power})}}
-			{\beta^{(k_{power})}}
+		        \delta\phi^{(k_{DMD})}=
+			\frac{\delta\phi^{(k_{DMD})}}
+			{\beta^{(k_{DMD})}}
 		\end{eqnarray}
 		(b) Multiply the normalized levelset field by a 
 		representative perturbation factor:
                 \begin{eqnarray}
-		        \delta\phi^{(k_{power})}=
-			\sigma\Delta x \delta\phi^{(k_{power})}
+		        \delta\phi^{(k_{DMD})}=
+			\sigma\Delta x \delta\phi^{(k_{DMD})}
 		\end{eqnarray}
 
 	\item[8.] Add the perturbations to the base 
 		state $S^{steady,(0)}$ (velocity, temperature, and 
 		level set function):
                 \begin{eqnarray}
-                u^{perturb,(0)}=u^{steady,(0)}+\delta u^{(k_{power})}
+                u^{perturb,(0)}=u^{steady,(0)}+\delta u^{(k_{DMD})}
                 \end{eqnarray}
                 \begin{eqnarray}
-		T^{perturb,(0)}=T^{steady,(0)}+\delta T^{(k_{power})}
+		T^{perturb,(0)}=T^{steady,(0)}+\delta T^{(k_{DMD})}
                 \end{eqnarray}
                 \begin{eqnarray}
                 \phi^{perturb,(0)}=\phi^{steady,(0)}+
-			\delta \phi^{(k_{power})}
+			\delta \phi^{(k_{DMD})}
                 \end{eqnarray}
 		note: we can write the overall perturbation in the
 		following form:
                 \begin{eqnarray}
-			\delta S^{(k_{power})}=\left(
+			\delta S^{(k_{DMD})}=\left(
 			\begin{array}{c}
-                         \delta u^{(k_{power})} \\
-                         \delta T^{(k_{power})} \\
-			 \delta \phi^{(k_{power})}
+                         \delta u^{(k_{DMD})} \\
+                         \delta T^{(k_{DMD})} \\
+			 \delta \phi^{(k_{DMD})}
 			\end{array} \right)
                 \end{eqnarray}
                 \begin{eqnarray}
-                S^{perturb,(0)}=S^{steady,(0)}+\delta S^{(k_{power})}
+                S^{perturb,(0)}=S^{steady,(0)}+\delta S^{(k_{DMD})}
                 \end{eqnarray}
+                $\bar{Q}+Q^{\prime n}$ in \cite{RANJAN2020109076}
+                ($n=k_{DMD}$).
 
         \item[9.] Solve,
         \begin{eqnarray}
@@ -380,15 +386,21 @@ as follows:
         for $M$ time steps, with a fixed $\Delta t$.
         \item[10.] Update the perturbation prediction:
                 \begin{eqnarray}
-                \delta u^{(k_{power}+1)}=u^{perturb,M}-u_{alt}^{(0)}
+                \delta u^{(k_{DMD}+1)}=u^{perturb,M}-u_{alt}^{(0)}
                 \end{eqnarray}
                 \begin{eqnarray}
-                T^{(k_{power}+1)}=T^{perturb,M}-T_{alt}^{(0)}
+                T^{(k_{DMD}+1)}=T^{perturb,M}-T_{alt}^{(0)}
                 \end{eqnarray}
                 \begin{eqnarray}
-                \phi^{(k_{power}+1)}=\phi^{perturb,M}-\phi_{alt}^{(0)}
+                \phi^{(k_{DMD}+1)}=\phi^{perturb,M}-\phi_{alt}^{(0)}
                 \end{eqnarray}
-        \item[11.] $k_{power}=k_{power}+1$
+                \begin{eqnarray}
+                \bar{Q}+Q^{\prime n}+\Delta\bar{Q}+\Delta Q^{\prime n}-
+                (\bar{Q}+\Delta\bar{Q})\equiv Q^{\prime(n+1)}
+                \end{eqnarray}
+                in \cite{RANJAN2020109076}
+        \item[11.] $k_{DMD}=k_{DMD}+1$
+           ($n$ in \cite{RANJAN2020109076})
         \item[12.] Go back to step 8.
 
 \end{description}
@@ -405,9 +417,9 @@ $N^{(M)}$ is the ``M'' time step discrete solution operator.
 \par\noindent
 So that, in this compact notation, step (10) is,
 \begin{eqnarray}
-	\delta S^{(k_{power}+1)}=
+	\delta S^{(k_{DMD}+1)}=
 	N^{(M)}(S^{steady,(0)}+
-	\delta S^{(k_{power})})-
+	\delta S^{(k_{DMD})})-
 	N^{(M)}(S^{steady,(0)})
 \end{eqnarray}
 Note:
@@ -421,10 +433,10 @@ Let,
 \end{eqnarray}
 Then using Taylor's theorem,
 \begin{eqnarray}
-	\delta S^{(k_{power}+1)}\approx 
-	A \delta S^{(k_{power})}\approx
-	A^{2} \delta S^{(k_{power}-1)}\approx\ldots\approx
-	A^{k_{power}+1} \delta S^{(0)}
+	\delta S^{(k_{DMD}+1)}\approx 
+	A \delta S^{(k_{DMD})}\approx
+	A^{2} \delta S^{(k_{DMD}-1)}\approx\ldots\approx
+	A^{k_{DMD}+1} \delta S^{(0)}
 \end{eqnarray}
 Ranjan et al\cite{RANJAN2020109076} (paper now included in this repository) 
 recommends to 
