@@ -443,6 +443,56 @@ recommends to
 use the DMD method by Schmid\cite{schmid2010dynamic} (this paper also
 now included in this repository).
 
+\subsection{Algorithm for approximating eigenvalues and eigenfunction from
+  a Krylov subspace}
+
+%Stefan problem
+%Peng Diao thesis (1D Stefan problem for exploring time parallel methods)
+In \cite{schmid2010dynamic}, they first assume that there is a linear mapping
+$A$ connects the flow field $\vec{v}_{i}$ to the subsequent flow field
+$\vec{v}_{i+1}$, in other words,
+\begin{eqnarray}
+\vec{v}_{i+1}=A\vec{v}_{i}.
+\end{eqnarray}
+It is assumed that $A$ is approximately independent of time over a given
+full sampling interval $0\le t\le (N-1)\Delta t$.  A Krylov sequence can
+be generated, given our assumptions, as follows:
+\begin{eqnarray}
+V_{1}^{N}=\left\{ v_{1},Av_{1},A^{2}v_{1},\ldots,A^{N-1}v_{1} \right\}.
+\end{eqnarray}
+The strategy is to pick $N$ large enough so that the vectors that make up
+$V_{1}^{N}$ are linearly dependent.  Then one has,
+\begin{eqnarray}
+\vec{v}_{N}=a_{1}\vec{v}_{1}+a_{2}\vec{v}_{2}+\ldots+a_{N-1}\vec{v}_{N-1}+
+  \vec{r}
+\end{eqnarray}
+In matrix form (see (2.5) of \cite{schmid2010dynamic}), one has
+\begin{eqnarray}
+\vec{v}_{N}=V_{1}^{N-1}\vec{a}+\vec{r}.
+\end{eqnarray}
+$\vec{a}$ is defined as
+\begin{eqnarray}
+\vec{a}^{T}=(a_{1},a_{2},\ldots,a_{N-1})
+\end{eqnarray}
+Next, in \cite{schmid2010dynamic} equation (2.6), one has
+\begin{eqnarray}
+\lefteqn{ AV_{1}^{N-1}=V_{2}^{N}= } \\
+& & \left\{\vec{v}_{2},\vec{v}_{3},\vec{v}_{4},\ldots,V_{1}^{N-1}\vec{a}
+    \right\}+\vec{r}\vec{e}_{N-1}^{T}=  \nonumber \\
+& & V_{1}^{N-1}S+\vec{r}\vec{e}_{N-1}^{T}
+\end{eqnarray}
+where (\cite{schmid2010dynamic} equation (2.8)),
+\begin{eqnarray}
+S=\left( \begin{array}{ccccc}
+  0 &          &         &   & a_{1} \\
+  1 & 0        &         &   & a_{2} \\
+    & \ddots   & \ddots  &   & \vdots \\
+    &          & 1       & 0 & a_{N-2} \\
+    &          &         & 1 & a_{N-1} 
+\end{array} \right)
+\end{eqnarray}
+
+
 \section{Background - deforming boundary problems in fluid mechanics}
 
 In the Introduction, we briefly demonstrate the benefits of our
