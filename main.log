@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.16)  11 MAY 2026 16:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.16)  18 MAY 2026 17:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -441,130 +441,130 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 {/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/loc
 al/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [2] [3] 
 [4] [5]
-[6]
-Overfull \hbox (4.33409pt too wide) in paragraph at lines 522--529
+[6] [7]
+Overfull \hbox (4.33409pt too wide) in paragraph at lines 571--578
 \OT1/cmr/m/n/10 have de-vel-oped (i) front track-ing methods[[], []], (ii) fron
 t cap-tur-ing methods[[],
  []
 
 
-LaTeX Warning: Reference `distancefunction' on page 7 undefined on input line 5
-47.
+LaTeX Warning: Reference `distancefunction' on page 8 undefined on input line 5
+96.
 
 
-LaTeX Warning: Reference `distancefunction' on page 7 undefined on input line 5
-50.
-
-[7]
-
-LaTeX Warning: Reference `tank_levelset' on page 8 undefined on input line 564.
+LaTeX Warning: Reference `distancefunction' on page 8 undefined on input line 5
+99.
 
 
+LaTeX Warning: Reference `tank_levelset' on page 8 undefined on input line 613.
 
-LaTeX Warning: Reference `ice_levelset' on page 8 undefined on input line 565.
 
 
-LaTeX Warning: Reference `liquid_lens' on page 8 undefined on input line 565.
+LaTeX Warning: Reference `ice_levelset' on page 8 undefined on input line 614.
 
-[8] [9]
 
-LaTeX Warning: Reference `fig:triple_point' on page 10 undefined on input line 
-765.
+LaTeX Warning: Reference `liquid_lens' on page 8 undefined on input line 614.
 
-[10]
+[8] [9] [10]
 
 LaTeX Warning: Reference `fig:triple_point' on page 11 undefined on input line 
-798.
+814.
 
 
-LaTeX Warning: Reference `fig:ch2_nodeslocation' on page 11 undefined on input 
-line 802.
+LaTeX Warning: Reference `fig:triple_point' on page 11 undefined on input line 
+847.
 
 [11]
-Overfull \hbox (9.41223pt too wide) in paragraph at lines 889--898
+
+LaTeX Warning: Reference `fig:ch2_nodeslocation' on page 12 undefined on input 
+line 851.
+
+[12]
+Overfull \hbox (9.41223pt too wide) in paragraph at lines 938--947
 \OT1/cmr/bx/n/10 frac-tions and Cen-troids: \OT1/cmr/m/n/10 The (con-tin-u-ous)
  moment-of-fluid re-con-structed
  []
 
 
-Overfull \hbox (3.48935pt too wide) in alignment at lines 912--918
+Overfull \hbox (3.48935pt too wide) in alignment at lines 961--967
  [][][] []
  []
 
-[12] [13]
+[13] [14]
 
-LaTeX Warning: Reference `fig:mof_reconstruction' on page 14 undefined on input
- line 1012.
-
-
-LaTeX Warning: Reference `fig:mof_tes_nontes' on page 14 undefined on input lin
-e 1020.
+LaTeX Warning: Reference `fig:mof_reconstruction' on page 15 undefined on input
+ line 1061.
 
 
-LaTeX Warning: Reference `CMOFcentroid' on page 14 undefined on input line 1050
+LaTeX Warning: Reference `fig:mof_tes_nontes' on page 15 undefined on input lin
+e 1069.
+
+
+LaTeX Warning: Reference `CMOFcentroid' on page 15 undefined on input line 1099
 .
 
-[14]
 
-LaTeX Warning: Reference `DT_figure' on page 15 undefined on input line 1070.
-
-
-LaTeX Warning: Reference `DT_figure' on page 15 undefined on input line 1102.
+LaTeX Warning: Reference `DT_figure' on page 15 undefined on input line 1119.
 
 [15]
-Overfull \hbox (5.9468pt too wide) in paragraph at lines 1134--1138
+
+LaTeX Warning: Reference `DT_figure' on page 16 undefined on input line 1151.
+
+
+Overfull \hbox (5.9468pt too wide) in paragraph at lines 1183--1187
 []\OT1/cmr/m/n/10 In 2D, at the very start of a sim-u-la-tion, one ran-domly cr
 e-ates $\OML/cmm/m/it/10 n[] \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (21.66628pt too wide) in paragraph at lines 1134--1138
+Overfull \hbox (21.66628pt too wide) in paragraph at lines 1183--1187
 \OT1/cmr/m/n/10 100[]$ sam-ple pairs for lines cut-ting through a given cell: $
 (^^B[]\OML/cmm/m/it/10 ; F[]\OT1/cmr/m/n/10 )$. 
  []
 
-
-LaTeX Warning: Reference `zalesaktable' on page 16 undefined on input line 1170
-.
-
 [16]
 
-LaTeX Warning: Reference `fig:redistancing' on page 17 undefined on input line 
-1235.
+LaTeX Warning: Reference `zalesaktable' on page 17 undefined on input line 1219
+.
 
 
 LaTeX Warning: Reference `fig:redistancing' on page 17 undefined on input line 
-1239.
+1284.
+
+[17]
+
+LaTeX Warning: Reference `fig:redistancing' on page 18 undefined on input line 
+1288.
 
 
-LaTeX Warning: Reference `fig:redistancing' on page 17 undefined on input line 
-1244.
+LaTeX Warning: Reference `fig:redistancing' on page 18 undefined on input line 
+1293.
 
 
-LaTeX Warning: Reference `fig:redistancing' on page 17 undefined on input line 
-1247.
+LaTeX Warning: Reference `fig:redistancing' on page 18 undefined on input line 
+1296.
 
 
-LaTeX Warning: Reference `fig:redistancing_3D' on page 17 undefined on input li
-ne 1251.
+LaTeX Warning: Reference `fig:redistancing_3D' on page 18 undefined on input li
+ne 1300.
 
 
-LaTeX Warning: Reference `fig:redistancing' on page 17 undefined on input line 
-1266.
+LaTeX Warning: Reference `fig:redistancing' on page 18 undefined on input line 
+1315.
 
 
-LaTeX Warning: Reference `fig:redistancing_3D' on page 17 undefined on input li
-ne 1267.
+LaTeX Warning: Reference `fig:redistancing_3D' on page 18 undefined on input li
+ne 1316.
 
 
-LaTeX Warning: Reference `fig:redistancing_ils' on page 17 undefined on input l
-ine 1274.
+LaTeX Warning: Reference `fig:redistancing_ils' on page 18 undefined on input l
+ine 1323.
 
 
-LaTeX Warning: Reference `fig:redistancing_ils' on page 17 undefined on input l
-ine 1276.
+LaTeX Warning: Reference `fig:redistancing_ils' on page 18 undefined on input l
+ine 1325.
 
-[17] (./main.bbl [18] [19] [20]) [21] (./main.aux)
+(./main.bbl [18] [19] [20] [21]) [22] (./main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -573,17 +573,20 @@ L3 programming layer <2024-02-20>
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 2EF6FF3BB4375D440477F77C43E0E3DC;2555.
  ) 
 Here is how much of TeX's memory you used:
- 10981 strings out of 474116
- 166527 string characters out of 5743681
+ 10995 strings out of 474116
+ 166703 string characters out of 5743681
  1944187 words of memory out of 5000000
  33025 multiletter control sequences out of 15000+600000
  570647 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 69i,14n,79p,665b,679s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 69i,14n,79p,665b,680s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb>
@@ -605,10 +608,10 @@ exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/te
 xmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/202
 4/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2024/
 texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on main.pdf (21 pages, 335981 bytes).
+Output written on main.pdf (22 pages, 339467 bytes).
 PDF statistics:
- 496 PDF objects out of 1000 (max. 8388607)
- 426 compressed objects within 5 object streams
- 161 named destinations out of 1000 (max. 500000)
+ 516 PDF objects out of 1000 (max. 8388607)
+ 445 compressed objects within 5 object streams
+ 175 named destinations out of 1000 (max. 500000)
  81 words of extra memory for PDF output out of 10000 (max. 10000000)
 

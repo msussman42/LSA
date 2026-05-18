@@ -461,7 +461,7 @@ be generated, given our assumptions, as follows:
 V_{1}^{N}=\left\{ v_{1},Av_{1},A^{2}v_{1},\ldots,A^{N-1}v_{1} \right\}.
 \end{eqnarray}
 The strategy is to pick $N$ large enough so that the vectors that make up
-$V_{1}^{N}$ are linearly dependent.  Then one has,
+$V_{1}^{N}$ are as close to linearly dependent as possible.  Then one has,
 \begin{eqnarray}
 \vec{v}_{N}=a_{1}\vec{v}_{1}+a_{2}\vec{v}_{2}+\ldots+a_{N-1}\vec{v}_{N-1}+
   \vec{r}
@@ -490,6 +490,55 @@ S=\left( \begin{array}{ccccc}
     &          & 1       & 0 & a_{N-2} \\
     &          &         & 1 & a_{N-1} 
 \end{array} \right)
+\end{eqnarray}
+To summarize, one has,
+\begin{eqnarray}
+AV_{1}^{N-1}=V_{1}^{N-1}S+\vec{r}\vec{e}^{T}_{N-1}.
+\end{eqnarray}
+Suppose $\vec{r}=0$, then
+\begin{eqnarray}
+\vec{v}_{N}=V_{1}^{N-1}\vec{a}
+\end{eqnarray}
+Let,
+\begin{eqnarray}
+U\Sigma W^{\ast}=V_{1}^{N-1}
+\end{eqnarray}
+\begin{eqnarray}
+\vec{v}_{N}=U\Sigma W^{\ast}\vec{a}
+\end{eqnarray}
+\begin{eqnarray}
+\vec{a}=W\Sigma^{\dagger}U^{\ast}\vec{v}_{N}
+\end{eqnarray}
+So now, given that $\vec{a}$ is determined, is to
+observe that (ignoring $\vec{r}$),
+\begin{eqnarray}
+AU\Sigma W^{\ast}=U\Sigma W^{\ast} S
+\end{eqnarray}
+\begin{eqnarray}
+U^{\ast}AU\Sigma W^{\ast}=\Sigma W^{\ast} S
+\end{eqnarray}
+\begin{eqnarray}
+U^{\ast}AU\Sigma =\Sigma W^{\ast} S W
+\end{eqnarray}
+\begin{eqnarray}
+U^{\ast}AU =\Sigma W^{\ast} S W \Sigma^{\dagger}
+\end{eqnarray}
+One can further find the singular value decomposition of $S$,
+\begin{eqnarray}
+U_{2}\Sigma_{2} W_{2}^{\ast}=S
+\end{eqnarray}
+So now one has,
+\begin{eqnarray}
+AX_{1}=X_{2}\Lambda
+\end{eqnarray}
+where
+\begin{eqnarray}
+\Lambda=\Sigma_{2}
+\end{eqnarray}
+and
+\begin{eqnarray}
+X_{1}=U\Sigma W^{\ast}W_{2} \\
+X_{2}=U\Sigma W^{\ast}U_{2}
 \end{eqnarray}
 
 
