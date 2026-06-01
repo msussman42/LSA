@@ -389,10 +389,10 @@ as follows:
                 \delta u^{(k_{DMD}+1)}=u^{perturb,M}-u_{alt}^{(0)}
                 \end{eqnarray}
                 \begin{eqnarray}
-                T^{(k_{DMD}+1)}=T^{perturb,M}-T_{alt}^{(0)}
+                \delta T^{(k_{DMD}+1)}=T^{perturb,M}-T_{alt}^{(0)}
                 \end{eqnarray}
                 \begin{eqnarray}
-                \phi^{(k_{DMD}+1)}=\phi^{perturb,M}-\phi_{alt}^{(0)}
+                \delta \phi^{(k_{DMD}+1)}=\phi^{perturb,M}-\phi_{alt}^{(0)}
                 \end{eqnarray}
                 \begin{eqnarray}
                 \bar{Q}+Q^{\prime n}+\Delta\bar{Q}+\Delta Q^{\prime n}-
@@ -446,6 +446,9 @@ now included in this repository).
 \subsection{Algorithm for approximating eigenvalues and eigenfunction from
   a Krylov subspace}
 
+In this section only, we let $M$ be the dimension of eigenvectors for which we
+seek.  $A$ is an $M\times M$ matrix.
+\par\noindent
 %Stefan problem
 %Peng Diao thesis (1D Stefan problem for exploring time parallel methods)
 In \cite{schmid2010dynamic}, they first assume that there is a linear mapping
@@ -460,6 +463,11 @@ be generated, given our assumptions, as follows:
 \begin{eqnarray}
 V_{1}^{N}=\left\{ v_{1},Av_{1},A^{2}v_{1},\ldots,A^{N-1}v_{1} \right\}.
 \end{eqnarray}
+The Krylov subspace $V_{1}^{N}$ has $N$ vectors; each vector $M\times 1$.
+This implies that $V_{1}^{N}$ can be represented as a $M\times N$ matrix.
+\par\noindent
+It is assumed that $N<<M$.
+\par\noindent
 The strategy is to pick $N$ large enough so that the vectors that make up
 $V_{1}^{N}$ are as close to linearly dependent as possible.  Then one has,
 \begin{eqnarray}
@@ -495,6 +503,8 @@ To summarize, one has,
 \begin{eqnarray}
 AV_{1}^{N-1}=V_{1}^{N-1}S+\vec{r}\vec{e}^{T}_{N-1}.
 \end{eqnarray}
+$S$ is an $N-1\times N-1$ matrix.
+\par\noindent
 Suppose $\vec{r}=0$, then
 \begin{eqnarray}
 \vec{v}_{N}=V_{1}^{N-1}\vec{a}
@@ -509,6 +519,10 @@ U\Sigma W^{\ast}=V_{1}^{N-1}
 \begin{eqnarray}
 \vec{a}=W\Sigma^{\dagger}U^{\ast}\vec{v}_{N}
 \end{eqnarray}
+$V_{1}^{N-1}$ is a $M\times N-1$ matrix.
+$U$ is an $M\times M$ matrix.  $\Sigma$ is a $M\times N-1$ matrix. $W$ is
+a $N-1\times N-1$ matrix.
+\par\noindent
 So now, given that $\vec{a}$ is determined, is to
 observe that (ignoring $\vec{r}$),
 \begin{eqnarray}
@@ -527,6 +541,9 @@ One can further find the singular value decomposition of $S$,
 \begin{eqnarray}
 U_{2}\Sigma_{2} W_{2}^{\ast}=S
 \end{eqnarray}
+$U_{2}$ is an $N-1\times N-1$ matrix.  $\Sigma_{2}$ is a diagonal 
+$N-1\times N-1$ matrix.  $W_{2}$ is $N-1\times N-1$.
+\par\noindent
 So now one has,
 \begin{eqnarray}
 AX_{1}=X_{2}\Lambda
@@ -540,6 +557,8 @@ and
 X_{1}=U\Sigma W^{\ast}W_{2} \\
 X_{2}=U\Sigma W^{\ast}U_{2}
 \end{eqnarray}
+$\Lambda$ is a diagonal $N-1\times N-1$ matrix.  $X_{1}$ is a $M\times N-1$
+matrix.  $X_{2}$ is a $M\times N-1$ matrix.
 
 
 \section{Background - deforming boundary problems in fluid mechanics}
