@@ -446,13 +446,15 @@ now included in this repository).
 \subsection{Algorithm for approximating eigenvalues and eigenfunction from
   a Krylov subspace}
 
-In this section only, we let $M$ be the dimension of eigenvectors for which we
-seek.  $A$ is an $M\times M$ matrix.
+In this section only, 
+we let $M$ be the dimension of eigenvectors for which we
+seek and $S$ an $N-1\times N-1$ matrix whose eigenvalues approximate that of
+$A$.  $A$ is an $M\times M$ matrix.
 \par\noindent
 %Stefan problem
 %Peng Diao thesis (1D Stefan problem for exploring time parallel methods)
 In \cite{schmid2010dynamic}, they first assume that there is a linear mapping
-$A$ connects the flow field $\vec{v}_{i}$ to the subsequent flow field
+$A$ that connects the flow field $\vec{v}_{i}$ to the subsequent flow field
 $\vec{v}_{i+1}$, in other words,
 \begin{eqnarray}
 \vec{v}_{i+1}=A\vec{v}_{i}.
@@ -476,7 +478,7 @@ $V_{1}^{N}$ are as close to linearly dependent as possible.  Then one has,
 \end{eqnarray}
 In matrix form (see (2.5) of \cite{schmid2010dynamic}), one has
 \begin{eqnarray}
-\vec{v}_{N}=V_{1}^{N-1}\vec{a}+\vec{r}.
+\vec{v}_{N}=V_{1}^{N-1}\vec{a}+\vec{r}. \label{aequation}
 \end{eqnarray}
 $\vec{a}$ is defined as
 \begin{eqnarray}
@@ -497,25 +499,27 @@ S=\left( \begin{array}{ccccc}
     & \ddots   & \ddots  &   & \vdots \\
     &          & 1       & 0 & a_{N-2} \\
     &          &         & 1 & a_{N-1} 
-\end{array} \right)
+\end{array} \right) \label{Smatrix}
 \end{eqnarray}
 To summarize, one has,
 \begin{eqnarray}
-AV_{1}^{N-1}=V_{1}^{N-1}S+\vec{r}\vec{e}^{T}_{N-1}.
+AV_{1}^{N-1}=V_{1}^{N-1}S+\vec{r}\vec{e}^{T}_{N-1}. \label{AandS}
 \end{eqnarray}
 $S$ is an $N-1\times N-1$ matrix.
 \par\noindent
-Suppose $\vec{r}=0$, then
+Suppose $\vec{r}=0$, then (from (\ref{aequation}))
 \begin{eqnarray}
 \vec{v}_{N}=V_{1}^{N-1}\vec{a}
 \end{eqnarray}
 Let,
 \begin{eqnarray}
-U\Sigma W^{\ast}=V_{1}^{N-1}
+U\Sigma W^{\ast}=V_{1}^{N-1} \hspace{20pt}
+\mbox{(SVD sorted from highest to lowest singular values)}
 \end{eqnarray}
 \begin{eqnarray}
-\vec{v}_{N}=U\Sigma W^{\ast}\vec{a}
+\vec{v}_{N}=U\Sigma W^{\ast}\vec{a} \label{avrelation} 
 \end{eqnarray}
+From (\ref{avrelation}):
 \begin{eqnarray}
 \vec{a}=W\Sigma^{\dagger}U^{\ast}\vec{v}_{N}
 \end{eqnarray}
@@ -523,8 +527,9 @@ $V_{1}^{N-1}$ is a $M\times N-1$ matrix.
 $U$ is an $M\times M$ matrix.  $\Sigma$ is a $M\times N-1$ matrix. $W$ is
 a $N-1\times N-1$ matrix.
 \par\noindent
-So now, given that $\vec{a}$ is determined, is to
-observe that (ignoring $\vec{r}$),
+So now, given that $\vec{a}$ is determined, we can find $S$ using
+(\ref{Smatrix}).  Then, using (\ref{AandS}) and ignoring $\vec{r}$,  is to
+observe that,
 \begin{eqnarray}
 AU\Sigma W^{\ast}=U\Sigma W^{\ast} S
 \end{eqnarray}
@@ -535,31 +540,26 @@ U^{\ast}AU\Sigma W^{\ast}=\Sigma W^{\ast} S
 U^{\ast}AU\Sigma =\Sigma W^{\ast} S W
 \end{eqnarray}
 \begin{eqnarray}
-U^{\ast}AU =\Sigma W^{\ast} S W \Sigma^{\dagger}
+U^{\ast}AU =\Sigma W^{\ast} S W \Sigma^{\dagger} \label{similar}
 \end{eqnarray}
-One can further find the singular value decomposition of $S$,
+The matrix on the right of (\ref{similar}) is an $M\times M$ matrix which
+is large! But the dimensions of $S$ is $N-1\times N-1$.  So we find the
+eigenvalues and eigenvectors of $S$:
 \begin{eqnarray}
-U_{2}\Sigma_{2} W_{2}^{\ast}=S
+S=X\Gamma X^{-1}  \hspace{20pt}
+\mbox{(sorted from highest to lowest magnitude eigenvalues)}
+\label{Sspectrum}
 \end{eqnarray}
-$U_{2}$ is an $N-1\times N-1$ matrix.  $\Sigma_{2}$ is a diagonal 
-$N-1\times N-1$ matrix.  $W_{2}$ is $N-1\times N-1$.
-\par\noindent
-So now one has,
+Using (\ref{Sspectrum}) and (\ref{similar}), one has
 \begin{eqnarray}
-AX_{1}=X_{2}\Lambda
+A=P\Gamma P^{\dagger} \hspace{20pt} P=U\Sigma W^{\ast}X=V_{1}^{N-1}X
 \end{eqnarray}
-where
-\begin{eqnarray}
-\Lambda=\Sigma_{2}
-\end{eqnarray}
-and
-\begin{eqnarray}
-X_{1}=U\Sigma W^{\ast}W_{2} \\
-X_{2}=U\Sigma W^{\ast}U_{2}
-\end{eqnarray}
-$\Lambda$ is a diagonal $N-1\times N-1$ matrix.  $X_{1}$ is a $M\times N-1$
-matrix.  $X_{2}$ is a $M\times N-1$ matrix.
+$P$ is an $M\times N-1$ matrix.
 
+So now using an ``approximate'' similarity transpose, we have that
+the first $N-1$ eigenvectors of $A$ are approximately the columns of 
+$P$ and the dominant eigenvalues of $A$ are the diagonal entries of
+$\Gamma$.
 
 \section{Background - deforming boundary problems in fluid mechanics}
 
