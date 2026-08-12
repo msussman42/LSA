@@ -533,6 +533,21 @@ $V_{1}^{N-1}$ is a $M\times N-1$ matrix.
 $U$ is an $M\times M$ matrix.  $\Sigma$ is a $M\times N-1$ matrix. $W$ is
 a $N-1\times N-1$ matrix.
 \par\noindent
+IMPORTANT REMARK:
+There should be a way, using the ``Implicitly restarted
+Arnoldi method''\cite{lehoucq2001implicitly}, in order to find the
+top eigenvalues and eigenvectors of $V_{1}^{N-1}$
+using just matrix vector multiplies where the matrix is 
+$V_{1}^{N-1}$.
+\par\noindent
+ANOTHER IMPORTANT REMARK:
+one can solve
+\begin{eqnarray}
+\vec{v}_{N}=V_{1}^{N-1}\vec{a}
+\end{eqnarray}
+for $\vec{a}$ by framing the problem as a least squares  minimization 
+problem.
+\par\noindent
 So now, given that $\vec{a}$ is determined, we can find $S$ using
 (\ref{Smatrix}).  Then, using (\ref{AandS}) and ignoring $\vec{r}$,  is to
 observe that,

@@ -119,6 +119,18 @@
 \newblock {\em Theoretical and Computational Fluid Dynamics 38}, 1 (2024),
   107--138.
 
+\bibitem{9904965}
+{\sc Krake, T., Klötzl, D., Eberhardt, B., and Weiskopf, D.}
+\newblock Constrained dynamic mode decomposition.
+\newblock {\em IEEE Transactions on Visualization and Computer Graphics 29}, 1
+  (2023), 182--192.
+
+\bibitem{lehoucq2001implicitly}
+{\sc Lehoucq, R.~B.}
+\newblock Implicitly restarted arnoldi methods and subspace iteration.
+\newblock {\em SIAM Journal on Matrix Analysis and Applications 23}, 2 (2001),
+  551--562.
+
 \bibitem{li2015multiphase}
 {\sc Li, G., Lian, Y., Guo, Y., Jemison, M., Sussman, M., Helms, T., and
   Arienti, M.}
