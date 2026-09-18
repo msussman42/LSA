@@ -543,7 +543,7 @@ $V_{1}^{N-1}$.
 ANOTHER IMPORTANT REMARK:
 one can solve
 \begin{eqnarray}
-\vec{v}_{N}=V_{1}^{N-1}\vec{a}
+	\vec{v}_{N}=V_{1}^{N-1}\vec{a} \label{a_equation}
 \end{eqnarray}
 for $\vec{a}$ by framing the problem as a least squares  minimization 
 problem.
@@ -581,6 +581,22 @@ So now using an ``approximate'' similarity transpose, we have that
 the first $N-1$ eigenvectors of $A$ are approximately the columns of 
 $P$ and the dominant eigenvalues of $A$ are the diagonal entries of
 $\Gamma$.
+
+\subsection{Equivalency of above analysis the least squares approach and a
+  new generalization}
+
+In re-considering equations (\ref{avrelation}) through (\ref{a_equation}), 
+one can cast the problem as a least squares problem without ever explicitly
+finding the $M\times M$ matrix $U$.  In order to simplify the notation, define:
+\begin{eqnarray}
+	B \equiv V_{1}^{N-1}.
+\end{eqnarray}
+The least squares problem is:
+\begin{eqnarray}
+	\vec{a}=\mbox{argmin} J(\vec{a})=
+	\mbox{argmin}_{\vec{a}} \sum_{i=1}^{M}\left(
+	(\sum_{j=1}^{N-1}B_{ij}a_{j})-v_{Ni}\right)^{2}w_{i}
+\end{eqnarray}
 
 \section{Background - deforming boundary problems in fluid mechanics}
 
