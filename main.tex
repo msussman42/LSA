@@ -527,7 +527,7 @@ U\Sigma W^{\ast}=V_{1}^{N-1} \hspace{20pt}
 \end{eqnarray}
 From (\ref{avrelation}):
 \begin{eqnarray}
-\vec{a}=W\Sigma^{\dagger}U^{\ast}\vec{v}_{N}
+	\vec{a}=W\Sigma^{\dagger}U^{\ast}\vec{v}_{N} \label{not_efficient}
 \end{eqnarray}
 $V_{1}^{N-1}$ is a $M\times N-1$ matrix.
 $U$ is an $M\times M$ matrix.  $\Sigma$ is a $M\times N-1$ matrix. $W$ is
@@ -601,9 +601,9 @@ The system of equations corresponding to,
 \begin{eqnarray}
 	\frac{\partial J}{\partial a_{k}}=0 \hspace{10pt} k=1,\ldots,N-1,
 \end{eqnarray}
-are,
+is,
 \begin{eqnarray}
-	B^{T}WB\vec{a}=B^{T}W\vec{v}_{N}.
+	B^{T}WB\vec{a}=B^{T}W\vec{v}_{N}. \label{lowdim}
 \end{eqnarray}
 $W$ is a $M\times M$ diagonal matrix with the following components:
 \begin{eqnarray}
@@ -612,7 +612,31 @@ $W$ is a $M\times M$ diagonal matrix with the following components:
 	0 & \mbox{otherwise} \end{array}
 	\right.
 \end{eqnarray}
-
+The components of $B^{T}WB$ and $B^{T}W\vec{v}_{N}$ are weighted
+inner products of the Krylov subspace vectors amongst 
+themselves:
+\begin{eqnarray}
+	(B^{T}WB)_{ij}=(\vec{v}_{i},\vec{v}_{j})_{\vec{w}} \hspace{10pt} 
+	i,j=1,\ldots,N-1
+\end{eqnarray}
+\begin{eqnarray}
+	(B^{T}W\vec{v}_{N})_{i}=(\vec{v}_{i},\vec{v}_{N})_{\vec{w}} 
+	\hspace{10pt} i=1,\ldots,N-1
+\end{eqnarray}
+Remarks:
+\begin{enumerate}
+	\item Solving (\ref{lowdim}) for $\vec{a}$,
+		by finding the pseudo inverse (Moore-Penrose inverse)
+		of
+		$B^{T}WB$, is equivalent to (\ref{not_efficient})
+		when $W$ is the identity.
+	\item The weights should be chosen according to the positioning
+		of the zero
+		level set of ``$\phi^{N}$''. For interfacial
+		flows controlled by the interface, the weights corresponding
+		to the level set function variable should dominate over
+		the weights corresponding to the velocity variables.
+\end{enumerate}
 
 \section{Background - deforming boundary problems in fluid mechanics}
 
