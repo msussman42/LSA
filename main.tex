@@ -582,8 +582,8 @@ the first $N-1$ eigenvectors of $A$ are approximately the columns of
 $P$ and the dominant eigenvalues of $A$ are the diagonal entries of
 $\Gamma$.
 
-\subsection{Equivalency of above analysis the least squares approach and a
-  new generalization}
+\subsection{Equivalency of the above analysis to
+  the least squares approach and a new generalization}
 
 In re-considering equations (\ref{avrelation}) through (\ref{a_equation}), 
 one can cast the problem as a least squares problem without ever explicitly
@@ -597,6 +597,22 @@ The least squares problem is:
 	\mbox{argmin}_{\vec{a}} \sum_{i=1}^{M}\left(
 	(\sum_{j=1}^{N-1}B_{ij}a_{j})-v_{Ni}\right)^{2}w_{i}
 \end{eqnarray}
+The system of equations corresponding to,
+\begin{eqnarray}
+	\frac{\partial J}{\partial a_{k}}=0 \hspace{10pt} k=1,\ldots,N-1,
+\end{eqnarray}
+are,
+\begin{eqnarray}
+	B^{T}WB\vec{a}=B^{T}W\vec{v}_{N}.
+\end{eqnarray}
+$W$ is a $M\times M$ diagonal matrix with the following components:
+\begin{eqnarray}
+	W_{ij}=\left\{ \begin{array}{cc}
+		w_{i} & \mbox{if $i=j$} \\
+	0 & \mbox{otherwise} \end{array}
+	\right.
+\end{eqnarray}
+
 
 \section{Background - deforming boundary problems in fluid mechanics}
 
