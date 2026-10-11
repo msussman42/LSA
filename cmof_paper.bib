@@ -1820,3 +1820,19 @@ abstract = {Global stability modes of flows provide significant insight into the
   year={2001},
   publisher={SIAM}
 }
+
+%MeehanSimonsWellinHamlington2022.pdf
+@article{MEEHAN2022111527,
+title = {Efficient algorithm for proper orthogonal decomposition of block-structured adaptively refined numerical simulations},
+journal = {Journal of Computational Physics},
+volume = {469},
+pages = {111527},
+year = {2022},
+issn = {0021-9991},
+doi = {https://doi.org/10.1016/j.jcp.2022.111527},
+url = {https://www.sciencedirect.com/science/article/pii/S0021999122005897},
+author = {Michael A. Meehan and Sam Simons-Wellin and Peter E. Hamlington},
+keywords = {Proper orthogonal decomposition, Adaptive mesh refinement, Computational fluid dynamics},
+abstract = {Adaptive mesh refinement (AMR) is increasingly being used to simulate fluid flows that have vastly different resolution requirements throughout the computational domain. Proper orthogonal decomposition (POD) is a common tool to extract coherent structures from flow data and build reduced order models, but current POD algorithms do not take advantage of potential efficiency gains enabled by multi-resolution data from AMR simulations. Here, we explore a new method for performing POD on AMR data that eliminates repeated operations arising from nearest-neighbor interpolation of multi-resolution data onto uniform grids. We first outline our approach to reduce the number of computations with examples and provide the complete algorithms in the appendix. We examine the computational acceleration of the new algorithms compared to the standard POD method using synthetically generated AMR data and operation counting. We then use CPU times and operation counting to analyze data from an AMR simulation of an axisymmetric buoyant plume, finding that we are able to reduce the computational time by a factor of approximately 2−5 when using three levels of grid refinement. The new POD algorithm is the first to eliminate redundant operations for matrix multiplications with repeated values in each matrix, making it ideal for POD of data from AMR simulations.}
+}
+
